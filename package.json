@@ -1,0 +1,19 @@
+{
+  "name": "controlpanel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corohsnk/controlPanel.git"
+  },
+  "author": "João Alexandre Tristão de Almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corohsnk/controlPanel/issues"
+  },
+  "homepage": "https://github.com/corohsnk/controlPanel#readme"
+}
