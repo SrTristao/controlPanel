@@ -5,6 +5,8 @@ import { CONST } from '../../../utils/const';
 export async function login(req: Request, res: Response, next: NextFunction) : Promise<void> {
     try {
         const token = await authService.login(req.body.email, req.body.password);
+        console.log(token);
+        res.status(200).send(token);
     } catch (err) {
         next(err);
     }

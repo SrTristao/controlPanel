@@ -1,6 +1,9 @@
 import * as UserRepository from '../repositories/User';
 import { IUser } from '../interfaces/IUser';
 
+export async function findByEmail(email: string) {
+    return await UserRepository.findByEmail(email);
+}
 export async function findById(id: number) {
     return await UserRepository.findById(id);
 }

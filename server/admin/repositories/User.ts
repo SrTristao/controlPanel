@@ -1,6 +1,9 @@
 import { User } from '../models/User';
 import { IUser } from '../interfaces/IUser';
 
+export async function findByEmail(email: string) : Promise<any> {
+    return await User.find({email: email});
+}
 export async function findById(id: number) : Promise<any> {
     return await User.findById(id);
 }

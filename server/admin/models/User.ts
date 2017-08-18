@@ -1,6 +1,6 @@
 import { IUser } from '../interfaces/IUser';
 import { Document, Schema, Model, model } from 'mongoose';
-
+import * as bcrypt from '../../services/bcrypt';
 interface IUserModel extends IUser, Document {}
 
 const userSchema = new Schema({
@@ -18,16 +18,19 @@ const userSchema = new Schema({
 userSchema.pre("save", function(next) {
     if (!this.createdAt) {
         this.createdAt = new Date();
-    }
-    hash('123');
-
-    function hash (password) {
-        this.password = password;
-    }
-
+    }   
+    setPassword(this.password);
     next();
 });
 
+function setPassword (password: string): Promise<void> {
+    return bcrypt.hash(password).then(hash => {
+        this.password = hash;
+    })
+}
 
+function checkPassword (hash, password) {
+
+}
 
 export const User = model<IUserModel>('User', userSchema);
