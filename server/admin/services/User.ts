@@ -1,5 +1,5 @@
 import * as UserRepository from '../repositories/User';
-import { IUser } from '../interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 
 export async function findByEmail(email: string) {
     return await UserRepository.findByEmail(email);

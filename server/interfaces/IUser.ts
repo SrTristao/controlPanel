@@ -3,6 +3,6 @@ export interface IUser extends Document {
     email: string;
     password: string;
     name: string;
-    accessLevel: number;
+    role: string[],
     createdAt: Date;    
 }

@@ -9,6 +9,3 @@ router.get('/', list)
         .delete('/', deleteUser)
         .post('/', saveUser)
         .put('/:id', updateUser);
-
-
-

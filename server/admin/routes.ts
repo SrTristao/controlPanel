@@ -1,8 +1,11 @@
 import * as express from 'express';
 import { router as userRoutes } from './routes/user/routes';
 import { router as authRoutes } from './routes/auth/routes';
-export const router = express.Router();
-import { authorize } from './middlewares/auth-service';
+import { router as itemRoutes } from './routes/item/routes';
+import { authorize } from '../middlewares/authRequired';
 
-router.use('/user', userRoutes);
+export const router = express.Router();
+
+router.use('/user', authorize('admin'), userRoutes);
+router.use('/item', authorize(['user', 'admin']), itemRoutes);
 router.use('/auth', authRoutes);

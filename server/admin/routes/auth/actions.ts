@@ -4,27 +4,24 @@ import { CONST } from '../../../utils/const';
 
 export async function login(req: Request, res: Response, next: NextFunction) : Promise<void> {
     try {
-        const token = await authService.login(req.body.email, req.body.password);
-        console.log(token);
-        res.status(200).send(token);
+        const token = await authService.login(req.body.email, req.body.password);                    
+        res.header('x-access-token');
+        res.setHeader('x-access-token', token);
+        res.status(200).json({ token });
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
-export async function changePassword(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-        
-
-    } catch (err) {
-        next(err);
-    }
-}
-
-export async function resetPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-
-    } catch (err) {
-        next(err);
-    }
+function errorHandler(err: Error, res: Response, next: NextFunction): any {
+  switch (err.message) {
+    case 'user-not-found':
+      return res.status(404).send({ message: 'Usuário não encontrado' });
+    case 'user-inactive':
+      return res.status(403).send({ message: 'Usuário inativo' });
+    case 'invalid-password':
+      return res.status(400).send({ message: 'Senha inválida' });
+    default:
+      next(err);
+  }
 }

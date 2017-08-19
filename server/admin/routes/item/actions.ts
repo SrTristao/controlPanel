@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response }  from 'express';
-import { list as listUser } from '../../repositories/User';
-import * as userService from '../../services/User';
+import { list as listItem } from '../../repositories/Item';
+import * as itemService from '../../services/Item';
 import { CONST } from '../../../utils/const';
 
 export async function findById(req: Request, res: Response, next: NextFunction) : Promise<void> {
     try {
-        const result = await userService.findById(req.params.id);
+        const result = await itemService.findById(req.params.id);
         if(result)            
             res.status(200).send(result);
         else
@@ -17,17 +17,17 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
 
 export async function list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await listUser(); 
+        const result = await listItem(); 
         res.status(401).send(result);
     } catch (err) {
         next(err);
     }
 }
 
-export async function saveUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function saveItem(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         console.log(req.body)
-        const result = await userService.saveUser(req.body); 
+        const result = await itemService.saveItem(req.body); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.SAVE);
         else
@@ -37,9 +37,9 @@ export async function saveUser(req: Request, res: Response, next: NextFunction):
     }
 }
 
-export async function deleteUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function deleteItem(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await userService.deleteUser(req.body.id); 
+        const result = await itemService.deleteItem(req.body.id); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.DELETE);
         else
@@ -49,9 +49,9 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
     }
 }
 
-export async function updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function updateItem(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await userService.updateUser(req.query); 
+        const result = await itemService.updateItem(req.query); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.UPDATE);
         else
