@@ -6,7 +6,7 @@ import { decodeToken } from '../admin/middlewares/auth-service';
 
 export function authorize(roles: string | string[] = null): (req: Request, res: Response, next: NextFunction) => Promise<void> { 
   return async (req: Request, res:Response, next: NextFunction): Promise<any> => {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];    
     if(!token) {
         res.status(401).json({
             message: 'Access denied'

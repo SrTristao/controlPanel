@@ -1,3 +1,5 @@
+$colorDefault: #0085CA;
+$backgroundDefault:#50514F; 
 @mixin flexDefault() {
     width: 100%;
     height: 100%;
@@ -5,44 +7,145 @@
     justify-content: center;
     align-items: center;    
 }
-.waves { 
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    -webkit-transition: .3s ease-out;
-    transition: .3s ease-out;
+
+body {
+    background-color: $backgroundDefault;
+    font-family: arial;
 }
 
-
 .btn {
-    text-decoration: none;
-    color: #fff;
-    background-color: #26a69a;
-    text-align: center;
-    letter-spacing: .5px;
-    -webkit-transition: .2s ease-out;
-    transition: .2s ease-out;
-    cursor: pointer;
-    outline: none;
-    border: none;
+    background: #cfd8dc;
+    border:0;
+    color: $colorDefault;
+    padding:10px;
+    font-size: 16px;
+    font-weight: 300;
+    width:330px;
+    margin:20px auto;
+    display:block;
+    cursor:pointer;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
     border-radius: 2px;
-    display: inline-block;
-    height: 36px;
-    line-height: 36px;
-    padding: 0 2rem;
-    text-transform: uppercase;
-    vertical-align: middle;
-    -webkit-tap-highlight-color: transparent;    
-    &:hover {
+    &:active{
+        background: $colorDefault;
+        color: #FFF;
+    }    
+    &:hover{
+        background: $colorDefault;
+        color: #FFF;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
         -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+        box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+    }      
+
+    &.btn-yellow {
+        color: #FFE066;
+        &:active, &:hover{
+            background: #FFE066;
+            color: #FFF;           
+        }
     }
+
+    &.btn-green {        
+        color: #70C1B3;
+        &:active, &:hover{
+            color: #FFF;
+            background: #70C1B3;            
+        }
+    }
+
+    &.btn-red {
+        color: #F25F5C;
+        &:active, &:hover{
+            color: #FFF;
+            background: #F25F5C;            
+        }
+    }
+    
+    &.disabled {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+    }
+}
+
+.input-group {
+    position:relative; 
+    margin-bottom: 35px; 
+    margin-left: 40px;
+    input {
+        font-size:18px;
+        padding:10px 10px 10px 5px;
+        display:block;
+        width:315px;
+        border:none;
+        border-bottom:1px solid #757575;
+        &:focus { 
+            outline:none;
+        }
+    }
+    label {
+        color:#999; 
+        font-size:14px;
+        font-weight:normal;
+        position:absolute;
+        pointer-events:none;
+        left:5px;
+        top:10px;
+        transition:0.2s ease all; 
+        -moz-transition:0.2s ease all; 
+        -webkit-transition:0.2s ease all;
+    }
+    input:focus ~ label, input:valid ~ label {
+        top:-20px;
+        font-size:14px;
+        color: $colorDefault;
+    }
+    .bar { 
+        position:relative; 
+        display:block; 
+        width:315px; 
+        &:before, &:after {
+            content:'';
+            height:2px; 
+            width:0;
+            bottom:1px; 
+            position:absolute;
+            background: $colorDefault; 
+            transition:0.2s ease all; 
+            -moz-transition:0.2s ease all; 
+            -webkit-transition:0.2s ease all;
+        }
+        &:before {
+            left:50%;
+        }
+        &:after {
+            right:50%; 
+        }
+    } 
+    input:focus ~ .bar:before, input:focus ~ .bar:after {
+        width:50%;
+    }     
+    input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+    }  
+    /* ANIMATIONS ================ */
+    @-webkit-keyframes inputHighlighter {
+        from { background:#5264AE; }
+      to 	{ width:0; background:transparent; }
+    }
+    @-moz-keyframes inputHighlighter {
+        from { background:#5264AE; }
+      to 	{ width:0; background:transparent; }
+    }
+    @keyframes inputHighlighter {
+        from { background:#5264AE; }
+      to 	{ width:0; background:transparent; }
+    }   
 }
