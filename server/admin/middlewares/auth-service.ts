@@ -1,9 +1,5 @@
-import { NextFunction, Request, Response }  from 'express';
 import * as jwt from 'jsonwebtoken';
 import * as config from '../../config';
-import { IUser } from '../../interfaces/IUser';
-import { User } from '../../models/User';
-import { findById } from '../repositories/User';
 
 export async function generateToken(data: any) {
     return await jwt.sign(data, config.SALT_KEY, {expiresIn: '1d'});

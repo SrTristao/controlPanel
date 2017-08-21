@@ -160,7 +160,8 @@ body {
     .login-container .box #bottom-head {
       position: relative;
       background: #0085CA;
-      height: 12px; }
+      height: 18px;
+      color: white; }
     .login-container .box #bottom-head::after {
       content: '';
       width: 0px;

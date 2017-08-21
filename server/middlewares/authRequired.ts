@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response }  from 'express';
-import * as jwt from 'jsonwebtoken';
-import * as config from '../config';
 import * as lodash from 'lodash';
 import { decodeToken } from '../admin/middlewares/auth-service';
 

@@ -1,4 +1,3 @@
-import { User } from '../../models/User';
 import * as userRepository from '../repositories/User';
 import * as bcrypt from '../../services/bcrypt';
 import * as token from '../middlewares/auth-service';

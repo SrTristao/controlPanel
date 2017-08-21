@@ -28,25 +28,26 @@
         }
                     
         #bottom-head{
-        position: relative;
-        background: $colorDefault;
-        height: 12px;
+            position: relative;
+            background: $colorDefault;
+            height: 18px;
+            color: white;
         }
         
         #bottom-head::after{
         content: '';
-        width: 0px;
-        height: 0px;
-        display: block;
-        position: absolute;
-        margin: auto;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-bottom: 7px solid white;
-        border-right: 7px solid rgba(0,0,0,0);
-        border-left: 7px solid rgba(0,0,0,0);
-        border-top: 7px solid rgba(0,0,0,0);
+            width: 0px;
+            height: 0px;
+            display: block;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-bottom: 7px solid white;
+            border-right: 7px solid rgba(0,0,0,0);
+            border-left: 7px solid rgba(0,0,0,0);
+            border-top: 7px solid rgba(0,0,0,0);
         }
         
         #footer-box{

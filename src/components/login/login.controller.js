@@ -10,9 +10,24 @@
         controllerAs: 'vm'
     });
 
-    loginController.$inject = [];
+    loginController.$inject = ['$http', 'CoreLoginService'];
 
-    function loginController() {
+    function loginController($http, CoreLoginService) {
+        //vars
+        let vm = this;
+        vm.login = {email: '', password: ''};
+
+        //functions to view
+
+        vm.entrar = _entrar;
+
+        function _entrar() {
+            CoreLoginService.login(vm.login).then(function(data) {
+                console.log(data);
+            }, function(err) {
+                console.log(err);
+            })
+        }
         
     }
 

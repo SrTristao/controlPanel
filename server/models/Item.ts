@@ -1,6 +1,5 @@
 import { IItem } from '../interfaces/IItem';
-import { Document, Schema, Model, model } from 'mongoose';
-import * as bcrypt from '../services/bcrypt';
+import { Document, Schema, model } from 'mongoose';
 interface IItemModel extends IItem, Document {}
 
 const itemSchema = new Schema({
