@@ -25,93 +25,48 @@
                 @include flexDefault();
                 height: 88px;
             }
-          }
+        }
                     
-          #bottom-head{
-            position: relative;
-            background: $colorDefault;
-            height: 12px;
-          }
-          
-          #bottom-head::after{
-            content: '';
-            width: 0px;
-            height: 0px;
-            display: block;
-            position: absolute;
-            margin: auto;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-bottom: 7px solid white;
-            border-right: 7px solid rgba(0,0,0,0);
-            border-left: 7px solid rgba(0,0,0,0);
-            border-top: 7px solid rgba(0,0,0,0);
-          }
-    }        
-    
-    .box h1{
-      margin-left: 20px;
-      margin-top: 0;
-        font-size: 24px;
-      font-weight: 300;
-      color: #cfd8dc;
-      line-height: 35px;
-    }    
-    
-    .box p{
-        font-size:14px;
-        text-align:center;
-    }
-
-    
-    #footer-box{
-      @include flexDefault();      
-      height: 50px;
-      background: $colorDefault;
-      position: absolute;
-      bottom: 0;      
-    }
-    
-    .footer-text{
-      color: #cfd8dc;
-      
-    }
-    
-    .sign-up{
-      color: white;
-      cursor: pointer;
-    }
-    
-    .sign-up:hover{
-       color: #b2dfdb; 
-    }       
-    
-    
-    @keyframes bounce-nds{
-        from {opacity: 0;}
-        to {opacity: 1; transform: scale(1);}
-    }
-    
-    @keyframes bounce-out-nds{
-        from {opacity: 1; transform: scale(1);}
-        to {opacity: 0; transform: scale(0);}
-    }
-    
-    
-    .profile-name{
-        line-height: 60px;
-        left: -70px;
+        #bottom-head{
+        position: relative;
+        background: $colorDefault;
+        height: 12px;
+        }
+        
+        #bottom-head::after{
+        content: '';
+        width: 0px;
+        height: 0px;
+        display: block;
         position: absolute;
-        font-family: 'Roboto';
-        color: #455a64;
-    }
-    
-    .profile-name:hover{
-      text-decoration: underline;
-    }
-    
-    a:link, a:visited{
-      text-decoration: none;
-    }
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 7px solid white;
+        border-right: 7px solid rgba(0,0,0,0);
+        border-left: 7px solid rgba(0,0,0,0);
+        border-top: 7px solid rgba(0,0,0,0);
+        }
+        
+        #footer-box{
+            @include flexDefault();      
+            height: 50px;
+            background: $colorDefault;
+            position: absolute;
+            bottom: 0;  
+            .footer-text{
+                color: #cfd8dc;            
+            }
+            
+            .sign-up{
+                color: white;
+            cursor: pointer;
+            }
+            
+            .sign-up:hover{
+                color: #b2dfdb; 
+            }     
+        }
+    }                               
 }
