@@ -15,11 +15,9 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('/', {
-                url: '/',
-                views: {
-                    
-                }
+            .state('/login', {
+                url: '/login',  
+                template: '<login></login>'          
             });         
     }
 

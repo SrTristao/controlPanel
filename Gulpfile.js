@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     ],
 
     filesCSS = [
+        'src/app/controlpanel.scss',
         'src/components/**/*.scss'
     ];
 
