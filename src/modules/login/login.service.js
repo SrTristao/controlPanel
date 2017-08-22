@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('controlpanel')
+    angular.module('controlpanel.login')
     .service('loginService', loginService);
 
     loginService.$inject = [];

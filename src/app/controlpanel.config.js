@@ -4,21 +4,15 @@
 
     angular
         .module('controlpanel')
-        .config(ConfigProvider)
+        .config(configRouter)
         .config(ConfigLocalStorage)
-        .run(function () {    
-        });
+        .run(["$rootScope", "$location", "$timeout", "CoreAuthService", run]);
 
-    ConfigProvider.$inject = ['$urlRouterProvider', '$stateProvider'];
-
-    function ConfigProvider($urlRouterProvider, $stateProvider) {
-        $urlRouterProvider.otherwise('/');
-
-        $stateProvider
-            .state('/login', {
-                url: '/login',  
-                template: '<login></login>'          
-            });         
+    configRouter.$inject = ["$routeProvider", "$locationProvider"];
+    
+    function configRouter($routeProvider, $locationProvider) {
+        $locationProvider.hashPrefix('');
+        $routeProvider.otherwise({ redirectTo: "/login" });
     }
 
     ConfigLocalStorage.$inject = ['localStorageServiceProvider'];
@@ -26,5 +20,22 @@
     function ConfigLocalStorage(localStorageServiceProvider) {
         localStorageServiceProvider.setPrefix('controlpanel');
     }
+
+    function run($rootScope, $location, $timeout, CoreAuthService) {        
+        $rootScope.$on("$routeChangeStart", ($event, next) => {                               
+          if (!next.$$route || next.$$route.allowAnonymous || next.$$route.redirectTo) {              
+            return true;
+          }
+    
+          if (!CoreAuthService.isLoggedIn()) {            
+            $location.path("/login");            
+            return;
+          }    
+          
+          if (next.$$route.role && !CoreAuthService.hasRole(next.$$route.role)) {
+            $location.path("/access-denied");
+          }
+        });
+      }
 
 })();
