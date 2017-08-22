@@ -10,18 +10,16 @@
         controllerAs: 'vm'
     });
 
-    loginController.$inject = ['$http', 'CoreLoginService'];
+    loginController.$inject = ['$http', 'CoreLoginService', 'CoreAuthService', 'CoreUserService'];
 
-    function loginController($http, CoreLoginService) {
+    function loginController($http, CoreLoginService, CoreAuthService, CoreUserService) {
         //vars
         let vm = this;
+        let test = CoreAuthService.getTokenData();
         vm.login = {email: '', password: ''};
 
         //functions to view
-
-        vm.entrar = _entrar;
-
-        function _entrar() {
+        vm.entrar = () => {
             CoreLoginService.login(vm.login).then(function(data) {
                 console.log(data);
             }, function(err) {

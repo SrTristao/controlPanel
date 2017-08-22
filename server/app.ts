@@ -2,7 +2,6 @@ import { router as apiRoutes } from './routes';
 import * as config from './config';
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { Request, Response } from 'express';
 import { cors } from './middlewares/cors';
 import mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
