@@ -10,6 +10,7 @@
         'controlpanel.home',
         'controlpanel.login',
         'controlpanel.user',
+        'controlpanel.item',
         'controlpanel.accessDenied'
     ]);
     

@@ -1,0 +1,52 @@
+.menu-container {
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;    
+    cursor: default;
+    color: white;
+    .menu-open, .menu-close {
+        display: flex;
+        flex: 1 1;        
+        height: 100%;
+        float: left;
+        background-color: $colorDefault;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;        
+    }
+
+    .menu-open {
+        min-width: 150px;
+        .menu-item {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            @include flexDefault();
+            flex-direction: column;
+            height: 62px;
+            &:hover {
+                background-color: $text-color-green;
+            }
+            span {
+                margin-top: 5px;
+            }
+        }
+    }
+
+    .menu-close {
+        min-width: 70px;
+        .menu-item {
+            cursor: pointer;
+            @include flexDefault();
+            flex-direction: column;
+            height: 62px;
+            &:hover {
+                background-color: $text-color-green;
+            }
+            span {
+                display: none;
+            }
+        }
+    }  
+}

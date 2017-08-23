@@ -12,13 +12,15 @@ var gulp = require('gulp'),
         'src/app/controlpanel.module.js',
         'src/app/controlpanel.controller.js',
         'src/app/controlpanel.config.js',  
-        'src/modules/**/*.js',              
+        'src/modules/**/*.js', 
+        'src/components/**/*js',             
         'src/utils/**/*.js'
     ],
 
     filesCSS = [
         'src/app/controlpanel.scss',
-        'src/modules/**/*.scss'
+        'src/modules/**/*.scss',
+        'src/components/**/*.scss'
     ];
 
 gulp.task('dev', [

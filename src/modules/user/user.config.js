@@ -11,7 +11,7 @@
             controllerAs: 'vm',        
             templateUrl: 'modules/user/user.html',
             allowWithoutEvent: true,
-            role: 'asdsadsa'      
+            role: 'admin'      
         });
     }
 })();

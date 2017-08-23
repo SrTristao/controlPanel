@@ -9,8 +9,12 @@
 
     function homeController() {
         //vars
-        let vm = this;      
-        
+        let vm = this;   
+        vm.compress = true;   
+        vm.diminuiMenu = () => {
+            vm.compress = !vm.compress;
+            console.log('asdsa');
+        }
     }
 
 })();

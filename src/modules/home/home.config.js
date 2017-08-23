@@ -10,6 +10,7 @@
         $routeProvider
         .when("/home", {   
             controller: 'homeController',        
+            controllerAs: 'vm',
             templateUrl: 'modules/home/home.html',
             allowWithoutEvent: true            
         });

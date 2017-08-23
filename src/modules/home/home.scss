@@ -1,3 +1,23 @@
-.home-container {
-    @include flexDefault();
+.home-container {    
+    display: flex;
+    flex: 1 1 auto;
+    height: 100%;  
+    .nav {        
+        @include flexDefault();
+        justify-content: flex-start;
+        float: left;
+        background: #EDEDED;
+        border-bottom: 1px solid #D9DEE4;
+        margin-bottom: 10px;
+        width: 100%;
+        position: relative;
+        height: 62px;
+        .bars {
+            background: transparent;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+    }
 }
