@@ -8,11 +8,11 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     babel = require('gulp-babel'),
 
-    filesJS = [
-        'src/app/controlpanel.js',
+    filesJS = [        
+        'src/app/controlpanel.module.js',
         'src/app/controlpanel.controller.js',
-        'src/app/controlpanel.config.js',        
-        'src/modules/**/*.js',
+        'src/app/controlpanel.config.js',  
+        'src/modules/**/*.js',              
         'src/utils/**/*.js'
     ],
 

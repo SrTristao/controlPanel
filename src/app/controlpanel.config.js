@@ -22,7 +22,7 @@
     }
 
     function run($rootScope, $location, $timeout, CoreAuthService) {        
-        $rootScope.$on("$routeChangeStart", ($event, next) => {                               
+        $rootScope.$on("$routeChangeStart", ($event, next) => {                             
           if (!next.$$route || next.$$route.allowAnonymous || next.$$route.redirectTo) {              
             return true;
           }
@@ -30,7 +30,12 @@
           if (!CoreAuthService.isLoggedIn()) {            
             $location.path("/login");            
             return;
-          }    
+          }
+          
+          if (CoreAuthService.isLoggedIn() && next.$$route.originalPath == '/login') {
+            $location.path('/home');
+            return;
+          }
           
           if (next.$$route.role && !CoreAuthService.hasRole(next.$$route.role)) {
             $location.path("/access-denied");

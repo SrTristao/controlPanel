@@ -1,6 +1,8 @@
 (function() {
     
-    angular.module('controlpanel.home',[])
+    angular.module('controlpanel.home',[]);
+    
+    angular.module('controlpanel.home')
     .config(homeConfig);
 
     homeConfig.$inject = ['$routeProvider'];
@@ -8,7 +10,7 @@
         $routeProvider
         .when("/home", {   
             controller: 'homeController',        
-            templateUrl: 'components/home/home.html',
+            templateUrl: 'modules/home/home.html',
             allowWithoutEvent: true            
         });
     }

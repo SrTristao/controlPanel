@@ -1,16 +1,17 @@
 (function() {
     'use strict';
-    angular.module('controlpanel.login', [])
+    angular.module('controlpanel.user', [])
     .config(loginConfig);
 
     loginConfig.$inject = ['$routeProvider'];
     function loginConfig($routeProvider) {
         $routeProvider
-        .when("/login", {   
-            controller: 'loginController',
+        .when("/user", {   
+            controller: 'userController',
             controllerAs: 'vm',        
-            templateUrl: 'modules/login/login.html',
-            allowWithoutEvent: true            
+            templateUrl: 'modules/user/user.html',
+            allowWithoutEvent: true,
+            role: 'asdsadsa'      
         });
     }
 })();
