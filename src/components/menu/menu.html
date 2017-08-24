@@ -3,17 +3,17 @@
             <div class="menu-item-bars" ng-click="vm.menuCompress()">            
                     <i class="fa fa-bars" aria-hidden="true"></i>                                
                 </div> 
-        <div class="menu-item">            
+        <div class="menu-item" ng-class="{'item-menu-active': vm.data.menuItemActive == 'home'}" ng-click="vm.changeScreen('home')">            
             <i class="fa fa-home" aria-hidden="true"></i>            
-            <span> Menu </span>
+            <span> Home </span>
         </div>       
-        <div class="menu-item">            
+        <div class="menu-item" ng-class="{'item-menu-active': vm.data.menuItemActive == 'user'}" ng-click="vm.changeScreen('user')">            
             <i class="fa fa-user" aria-hidden="true"></i>            
-            <span> User </span>
+            <span> Usuários </span>
         </div>  
-        <div class="menu-item">            
+        <div class="menu-item" ng-class="{'item-menu-active': vm.data.menuItemActive == 'item'}" ng-click="vm.changeScreen('item')">            
             <i class="fa fa-item" aria-hidden="true"></i>            
-            <span> Item </span>
+            <span> Itens </span>
         </div>     
     </div>
 </div>

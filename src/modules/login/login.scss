@@ -1,5 +1,12 @@
 .login-container {
-    @include flexDefault();        
+    @include flexDefault();   
+    .input-group {
+        margin-left: 40px;
+        width: 320px;
+        input {     
+            background: white;
+        }
+    }
     .box{
         position: relative;    
         height: 410px;

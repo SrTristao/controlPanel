@@ -1,3 +1,52 @@
-<div class="user-container">
-     asdsdsadsa
+<div class="user-container"> 
+    <label class="title">Usuários</label>   
+    <div class="search-container">
+        <div class="input-group active-float-left">      
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Usuário</label>
+        </div>
+        <div class="input-group active-float-left">      
+            <select ng-model="vm.teste" required>
+                <option value=""></options>
+                <option value="1">Teste1 </option>
+            </select>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Nível de acesso</label>
+        </div>
+        <div class="input-group active-float-left">      
+            <input name="date" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Criado em</label>
+        </div>                
+    </div>
+    <div class="search-buttons">
+        <button class="btn btn-md"> Pesquisar </button>
+        <button class="btn btn-green btn-md active-float-right" ng-click="vm.newUser()"> Novo </button>
+    </div>    
+    <div class="search-table table-responsive-vertical shadow-z-1">  
+        <table id="table" class="table table-hover">
+            <thead>
+                <tr>
+                <th>Usuário</th>
+                <th>Nível de acesso</th>
+                <th>Criado em</th>
+                <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>       
+                <tr ng-repeat="user in vm.listUsers">
+                    <td data-title="Name"> {{user.name}} </td>
+                    <td data-title="Role"> {{user.role}} </td>
+                    <td data-title="CreatedAt"> {{user.createdAt}} </td>
+                    <td data-title="Action"> <button class="btn btn-green btn-icon" title="Editar" ng-click="vm.editUser(user)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-red btn-icon" title="Excluir"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
 </div>

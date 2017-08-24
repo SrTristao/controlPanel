@@ -17,13 +17,26 @@
         .menu-item {
             &:hover {
                 background-color: $text-color-green;
-            }     
-        }  
+            }   
+        }
+        .item-menu-active {
+            background-color: $text-color-green;
+        }
         .menu-item-bars {            
             cursor: pointer;
             @include flexDefault();
             flex-direction: column;
             height: 62px; 
+        }
+         @media screen and (max-width: 767px) {
+            .menu-item-bars {
+                display: none;
+            }
+        }
+        @media screen and (min-width: 767px) {
+            .menu-item-bars {
+                display: inherit;
+            }
         }
     }
 
@@ -53,6 +66,5 @@
                 display: none;
             }
         }
-    } 
-        
+    }        
 }
