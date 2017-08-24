@@ -5,9 +5,9 @@
     angular.module('controlpanel.item')    
     .controller('itemController', itemController);   
 
-    itemController.$inject = ['CoreItemService', '$location'];
+    itemController.$inject = [];
 
-    function itemController(CoreItemService, $location) {
+    function itemController() {
         //vars
         let vm = this;
         

@@ -4,16 +4,15 @@
 
     angular
         .module('controlpanel')
-        .config(configRouter)
+        .config(ConfigProvider)
         .config(ConfigLocalStorage)
-        .run(["$rootScope", "$location", "$timeout", "CoreAuthService", run]);
+        .run(["$rootScope", "$state", "CoreAuthService", run]);
 
-    configRouter.$inject = ["$routeProvider", "$locationProvider"];
+    ConfigProvider.$inject = ['$urlRouterProvider'];
     
-    function configRouter($routeProvider, $locationProvider) {
-        $locationProvider.hashPrefix('');
-        $routeProvider.otherwise({ redirectTo: "/login" });
-    }
+        function ConfigProvider($urlRouterProvider) {
+            $urlRouterProvider.otherwise('/login');                          
+        }
 
     ConfigLocalStorage.$inject = ['localStorageServiceProvider'];
 
@@ -21,25 +20,21 @@
         localStorageServiceProvider.setPrefix('controlpanel');
     }
 
-    function run($rootScope, $location, $timeout, CoreAuthService) {        
-        $rootScope.$on("$routeChangeStart", ($event, next) => {                             
-          if (!next.$$route || next.$$route.allowAnonymous || next.$$route.redirectTo) {              
-            return true;
-          }
-    
-          if (!CoreAuthService.isLoggedIn()) {            
-            $location.path("/login");            
-            return;
+    function run($rootScope, $state, CoreAuthService) {              
+        $rootScope.$on("$stateChangeStart", (event, toState, toParams, fromState, fromParams) => {                               
+          if (!CoreAuthService.isLoggedIn() && toState.url != '/login') {
+            event.preventDefault();             
+            $state.go("login");                        
           }
           
-          if (CoreAuthService.isLoggedIn() && next.$$route.originalPath == '/login') {
-            $location.path('/home');
-            return;
-          }
-          
-          if (next.$$route.role && !CoreAuthService.hasRole(next.$$route.role)) {
-            $location.path("/access-denied");
-          }
+          if (CoreAuthService.isLoggedIn() && toState.url == '/login') {
+            event.preventDefault(); 
+            $state.go("home");            
+          }          
+            if (toState.role && !CoreAuthService.hasRole(toState.role)) {
+              event.preventDefault(); 
+              $state.go("access-denied");
+            }          
         });
       }
 

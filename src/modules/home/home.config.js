@@ -5,14 +5,21 @@
     angular.module('controlpanel.home')
     .config(homeConfig);
 
-    homeConfig.$inject = ['$routeProvider'];
-    function homeConfig($routeProvider) {
-        $routeProvider
-        .when("/home", {   
-            controller: 'homeController',        
-            controllerAs: 'vm',
-            templateUrl: 'modules/home/home.html',
-            allowWithoutEvent: true            
+    homeConfig.$inject = ['$stateProvider'];
+    function homeConfig($stateProvider) {
+        $stateProvider        
+        .state('home', {
+            url: '/home',
+            views: {
+                'menu': {
+                    template: '<menu compress="vm.compress"></menu>'
+                },                
+                'body': {
+                    templateUrl: 'modules/home/home.html',
+                    controller: 'homeController',
+                    controllerAs: 'vm'
+                }
+            }
         });
     }
 

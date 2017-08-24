@@ -5,10 +5,11 @@
     angular.module('controlpanel')
         .controller('controlpanelController', controlpanelController);
 
-        controlpanelController.$inject = ['DataFactory'];
+        controlpanelController.$inject = ['CoreAuthService'];
 
-        function controlpanelController(DataFactory) {
-            let vm = this;              
+        function controlpanelController(CoreAuthService) {
+            let vm = this;   
+            vm.isLogged = CoreAuthService.isLoggedIn;
         }
 
 })();

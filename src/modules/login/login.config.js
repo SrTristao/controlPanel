@@ -3,15 +3,19 @@
     angular.module('controlpanel.login', [])
     .config(loginConfig);
 
-    loginConfig.$inject = ['$routeProvider'];
-    function loginConfig($routeProvider) {
-        $routeProvider
-        .when("/login", {   
-            controller: 'loginController',
-            controllerAs: 'vm',        
-            templateUrl: 'modules/login/login.html',
-            allowWithoutEvent: true            
-        });
+    loginConfig.$inject = ['$stateProvider'];
+    function loginConfig($stateProvider) {
+        $stateProvider
+        .state('login', {
+            url: '/login',
+            views: {           
+                'body': {
+                    templateUrl: 'modules/login/login.html',
+                    controller: 'loginController',
+                    controllerAs: 'vm'
+                }                        
+            }            
+        })
     }
 })();
     

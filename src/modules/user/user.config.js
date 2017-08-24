@@ -1,17 +1,23 @@
 (function() {
     'use strict';
     angular.module('controlpanel.user', [])
-    .config(loginConfig);
+    .config(userConfig);
 
-    loginConfig.$inject = ['$routeProvider'];
-    function loginConfig($routeProvider) {
-        $routeProvider
-        .when("/user", {   
-            controller: 'userController',
-            controllerAs: 'vm',        
-            templateUrl: 'modules/user/user.html',
-            allowWithoutEvent: true,
-            role: 'admin'      
+    userConfig.$inject = ['$stateProvider'];
+    function userConfig($stateProvider) {
+        $stateProvider        
+        .state('user', {
+            url: '/user',
+            views: {
+                'menu': {
+                    template: '<menu compress="vm.compress"></menu>'
+                },                
+                'body': {
+                    templateUrl: 'modules/user/user.html',
+                    controller: 'userController',
+                    controllerAs: 'vm'
+                }
+            }
         });
     }
 })();

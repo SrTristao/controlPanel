@@ -13,7 +13,18 @@
         background-color: $colorDefault;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;        
+        align-items: center; 
+        .menu-item {
+            &:hover {
+                background-color: $text-color-green;
+            }     
+        }  
+        .menu-item-bars {            
+            cursor: pointer;
+            @include flexDefault();
+            flex-direction: column;
+            height: 62px; 
+        }
     }
 
     .menu-open {
@@ -24,10 +35,7 @@
             cursor: pointer;
             @include flexDefault();
             flex-direction: column;
-            height: 62px;
-            &:hover {
-                background-color: $text-color-green;
-            }
+            height: 62px;            
             span {
                 margin-top: 5px;
             }
@@ -40,13 +48,11 @@
             cursor: pointer;
             @include flexDefault();
             flex-direction: column;
-            height: 62px;
-            &:hover {
-                background-color: $text-color-green;
-            }
+            height: 62px;         
             span {
                 display: none;
             }
         }
-    }  
+    } 
+        
 }
