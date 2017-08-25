@@ -22,6 +22,9 @@ userSchema.pre("save", async function(next) {
     this.password = await bcrypt.hash(this.password);
     next();
 });
+userSchema.pre('update', async function() {
+    this.update({},{ $set: { password: await bcrypt.hash(this.password)} });
+});
 
 
 export const User = model<IUserModel>('User', userSchema);

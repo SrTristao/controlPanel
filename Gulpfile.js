@@ -13,6 +13,7 @@ var gulp = require('gulp'),
         'src/app/controlpanel.controller.js',
         'src/app/controlpanel.config.js',  
         'src/modules/**/*.js', 
+        'src/modules/**/**/*.js',
         'src/components/**/*js',             
         'src/utils/**/*.js'
     ],

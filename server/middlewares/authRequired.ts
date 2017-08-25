@@ -8,6 +8,7 @@ import { NextFunction, Request, Response } from 'express';
 export function authRequired(roles: string | string[] = null): (req: Request, res: Response, next: NextFunction) => Promise<void> {
 
   return async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+    console.log('passou aqi' + req.user);
     if (req.method === 'OPTIONS') {
       return next();
     }

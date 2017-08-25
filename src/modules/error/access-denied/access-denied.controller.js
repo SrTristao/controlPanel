@@ -5,18 +5,18 @@
     angular.module('controlpanel.error')    
     .controller('accessDeniedController', accessDeniedController);   
 
-    accessDeniedController.$inject = ['DataFactory'];
+    accessDeniedController.$inject = ['$stateParams', 'DataFactory'];
 
-    function accessDeniedController(DataFactory) {
+    function accessDeniedController($stateParams, DataFactory) {
         //vars
         let vm = this;
-        // vm.data = DataFactory;
+        vm.data = DataFactory;
 
-        // const init = () => {
-        //    // vm.data.menuItemActive = 'error';
-        // }
+        const init = () => {
+           vm.data.menuItemActive = $stateParams.route;
+        }
 
-        // init();
+        init();
         
     }
 

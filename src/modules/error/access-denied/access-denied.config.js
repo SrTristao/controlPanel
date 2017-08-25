@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('controlpanel.error', [])
+    angular.module('controlpanel.error')
     .config(accessDeniedConfig);
 
     accessDeniedConfig.$inject = ['$stateProvider'];
@@ -17,6 +17,9 @@
                     controller: 'accessDeniedController',
                     controllerAs: 'vm'
                 }
+            },
+            params: {
+                route: null
             }
         });
     }

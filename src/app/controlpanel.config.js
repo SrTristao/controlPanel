@@ -25,6 +25,11 @@
             if (toState.error) {
                 return ;
             }
+
+            if (toState.url == '/access-denied' && !toParams.route) {
+                event.preventDefault();
+                $state.go(fromState.name);
+            }
             
             if (!CoreAuthService.isLoggedIn() && toState.url != '/login') {
                 event.preventDefault();             
@@ -36,8 +41,8 @@
                 $state.go("home");            
             }          
             if (toState.role && !CoreAuthService.hasRole(toState.role)) {
-                event.preventDefault(); 
-                $state.go("access-denied");
+                event.preventDefault();                 
+                $state.go("access-denied", {route: toState.name});
             }          
         });
       }

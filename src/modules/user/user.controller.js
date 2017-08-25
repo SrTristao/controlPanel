@@ -5,29 +5,20 @@
     angular.module('controlpanel.user')    
     .controller('userController', userController);   
 
-    userController.$inject = ['CoreUserService', 'ngDialog', 'DataFactory'];
+    userController.$inject = ['CoreUserService', 'ngDialog', 'DataFactory', '$http'];
 
-    function userController(CoreUserService, ngDialog, DataFactory) {
+    function userController(CoreUserService, ngDialog, DataFactory, $http) {
         //vars
         let vm = this;
         vm.data = DataFactory;
         
         const init = () => {
             vm.data.menuItemActive = 'user';
+            CoreUserService.getListUser().then(data => vm.listUsers = data);           
         }
 
         init();
-        vm.listUsers = [{_id: 123213312, name: 'João Alexandre Tristão de Almeida', role: 'admin', createdAt: '01/01/2017'},
-                        {_id: 123213311, name: 'João 1', role: 'user', createdAt: '01/01/2017'},
-                        {_id: 123213313, name: 'João 2', role: 'admin', createdAt: '01/01/2017'},
-                        {_id: 123213314, name: 'João 3', role: 'user', createdAt: '01/01/2017'},
-                        {_id: 123213315, name: 'João 4', role: 'admin', createdAt: '01/01/2017'},
-                        {_id: 123213316, name: 'João 5', role: 'user', createdAt: '01/01/2017'},
-                        {_id: 123213317, name: 'João 2', role: 'admin', createdAt: '01/01/2017'},
-                        {_id: 123213318, name: 'João 3', role: 'user', createdAt: '01/01/2017'},
-                        {_id: 123213319, name: 'João 4', role: 'admin', createdAt: '01/01/2017'},
-                        {_id: 1232133111, name: 'João 5', role: 'user', createdAt: '01/01/2017'}];
-        
+       
         vm.newUser = () => {
             const newUser = ngDialog.open({
                 templateUrl: 'modules/user/userModal.html',                
@@ -53,6 +44,10 @@
                     user: user
                 }               
             }); 
+        }
+
+        vm.test = () => {
+            CoreUserService.getUser('5998af774e57cb4774469985').then(data => console.log(data));
         }
     }
 

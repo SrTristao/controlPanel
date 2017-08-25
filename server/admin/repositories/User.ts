@@ -9,7 +9,7 @@ export async function findById(id: number) : Promise<any> {
     return await User.findById(id);
 }
 
-export async function list() : Promise<IUser[]> {    
+export async function list() : Promise<IUser[]> {   
    return await User.find();
 }
 

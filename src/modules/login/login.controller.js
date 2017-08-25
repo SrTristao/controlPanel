@@ -18,7 +18,7 @@
         vm.signIn = () => {           
             CoreLoginService.login(vm.login).then((data) => {
                 if(data === 'server undefined') {
-                    alert(data);
+                    $state.go('server-undefined');
                     return;
                 }
 

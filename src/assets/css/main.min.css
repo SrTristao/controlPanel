@@ -321,11 +321,51 @@ label.title {
   .table-responsive-vertical > .table-hover > tbody > tr > td:hover {
     background-color: #2A3F54; } }
 
-.home-container {
-  display: flex;
-  flex: 1 1 auto;
+.user-container {
+  width: 100%;
   height: 100%;
-  overflow-y: scroll; }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto; }
+  .user-container .input-group {
+    margin-left: 10px; }
+  .user-container .search-table, .user-container .search-container, .user-container .search-buttons {
+    margin-left: 40px; }
+  .user-container .search-container {
+    width: 84%;
+    margin-top: 50px; }
+  .user-container .search-table {
+    width: 84%;
+    margin-bottom: 35px; }
+  .user-container .search-buttons {
+    width: 84%; }
+  @media screen and (max-width: 767px) {
+    .user-container .search-container, .user-container .search-table, .user-container .search-buttons {
+      margin-left: 20px; } }
+
+.userModal-container {
+  background-color: #F7F7F7;
+  width: auto;
+  height: 450px; }
+  .userModal-container .input-group {
+    width: 100%; }
+  .userModal-container label.title {
+    margin-left: 0px;
+    font-size: 20px; }
+  .userModal-container form {
+    margin-top: 50px; }
+  .userModal-container .buttons {
+    float: left; }
+    .userModal-container .buttons #salvar {
+      margin-left: 10px; }
+  .userModal-container .ng-touched.ng-invalid {
+    border-color: red; }
 
 .item-container {
   width: 100%;
@@ -372,6 +412,12 @@ label.title {
       margin-left: 10px; }
   .itemModal-container .ng-touched.ng-invalid {
     border-color: red; }
+
+.home-container {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  overflow-y: scroll; }
 
 .login-container {
   width: 100%;
@@ -446,52 +492,6 @@ label.title {
         cursor: pointer; }
       .login-container .box #footer-box .sign-up:hover {
         color: #b2dfdb; }
-
-.user-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  flex: 1 1 auto;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: auto; }
-  .user-container .input-group {
-    margin-left: 10px; }
-  .user-container .search-table, .user-container .search-container, .user-container .search-buttons {
-    margin-left: 40px; }
-  .user-container .search-container {
-    width: 84%;
-    margin-top: 50px; }
-  .user-container .search-table {
-    width: 84%;
-    margin-bottom: 35px; }
-  .user-container .search-buttons {
-    width: 84%; }
-  @media screen and (max-width: 767px) {
-    .user-container .search-container, .user-container .search-table, .user-container .search-buttons {
-      margin-left: 20px; } }
-
-.userModal-container {
-  background-color: #F7F7F7;
-  width: auto;
-  height: 290px; }
-  .userModal-container .input-group {
-    width: 100%; }
-  .userModal-container label.title {
-    margin-left: 0px;
-    font-size: 20px; }
-  .userModal-container form {
-    margin-top: 50px; }
-  .userModal-container .buttons {
-    float: left; }
-    .userModal-container .buttons #salvar {
-      margin-left: 10px; }
-  .userModal-container .ng-touched.ng-invalid {
-    border-color: red; }
 
 .access-denied-container {
   width: 100%;

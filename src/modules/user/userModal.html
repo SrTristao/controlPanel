@@ -2,6 +2,18 @@
     <label class="title">{{vm.user._id ? 'Editar usuário' : 'Novo usuário'}}</label>
     <form novalidate name="vm.formCadastro">
         <div class="input-group active-float-left width-lg">      
+            <input type="text" required ng-model="vm.user.email" ng-pattern='vm.validateEmail'>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Email</label>
+        </div>
+        <div class="input-group active-float-left width-lg">      
+            <input type="password" required ng-model="vm.user.password">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Senha</label>
+        </div>
+        <div class="input-group active-float-left width-lg">      
             <input type="text" required ng-model="vm.user.name">
             <span class="highlight"></span>
             <span class="bar"></span>
@@ -20,6 +32,9 @@
         <div class="buttons">
             <button class="btn btn-red btn-md" ng-click="closeThisDialog(0)"> Cancelar </button>    
             <button class="btn btn-green btn-md" id="salvar" ng-click="vm.saveUser()" ng-disabled="!vm.formCadastro.$valid"> Salvar </button>
+        </div>
+        <div class="footer-modal">
+            <span>{{vm.msgError}}</span>
         </div>
     </form>
 </div>

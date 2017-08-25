@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('controlpanel.error', [])
+    angular.module('controlpanel.error')
     .config(serverUndefinedConfig);
 
     serverUndefinedConfig.$inject = ['$stateProvider'];
