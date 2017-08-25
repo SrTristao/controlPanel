@@ -33,6 +33,7 @@ label.title {
 .active-float-right {
     float:right !important;
 }
+
 .btn {
     background: #cfd8dc;
     border:0;
@@ -107,7 +108,7 @@ label.title {
         padding: 2px;
     }
     
-    &.disabled {
+    &[disabled] {
         cursor: not-allowed;
         filter: alpha(opacity=65);
         -webkit-box-shadow: none;

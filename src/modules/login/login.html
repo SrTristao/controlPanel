@@ -4,9 +4,9 @@
           <div class="icon-header"><img src="./assets/icons/user.png" ></div>
           <div id="bottom-head">Control Panel</div>
         </div> 
-         <form>
+         <form novalidate name="vm.formLogin">
           <div class="input-group">      
-            <input type="text" required ng-model="vm.login.email">
+            <input type="text" required ng-model="vm.login.email" ng-pattern='vm.validateEmail'>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Email</label>
@@ -17,8 +17,8 @@
             <span class="bar"></span>
             <label>Password</label>
           </div>          
-          <button id="buttonlogintoregister" class="btn" ng-click="vm.entrar()">Login</button>
+          <button id="buttonlogintoregister" class="btn" ng-click="vm.signIn()"  ng-disabled="!vm.formLogin.$valid">Login</button>
         </form>
-        <div id="footer-box"></div>
+        <div id="footer-box"> <label class="footer-text"> {{vm.msgError ? vm.msgError : ''}} </label> </div>
       </div>      
 </div>

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('controlpanel.accessDenied')
+    angular.module('controlpanel.error')
     .service('accessDeniedService', accessDeniedService);
 
     accessDeniedService.$inject = [];

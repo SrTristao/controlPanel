@@ -10,14 +10,15 @@
             url: '/user',
             views: {
                 'menu': {
-                    template: '<menu compress="vm.compress"></menu>'
+                    template: '<menu></menu>'
                 },                
                 'body': {
                     templateUrl: 'modules/user/user.html',
                     controller: 'userController',
                     controllerAs: 'vm'
                 }
-            }
+            },
+            role: 'admin'
         });
     }
 })();

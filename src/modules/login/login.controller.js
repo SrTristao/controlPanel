@@ -5,21 +5,31 @@
     angular.module('controlpanel.login')    
     .controller('loginController', loginController);   
 
-    loginController.$inject = ['$http', 'CoreLoginService', 'CoreAuthService', 'CoreUserService', '$location'];
+    loginController.$inject = ['$http', 'CoreLoginService', 'CoreAuthService', 'CoreUserService', '$state', 'REGEX'];
 
-    function loginController($http, CoreLoginService, CoreAuthService, CoreUserService, $location) {
+    function loginController($http, CoreLoginService, CoreAuthService, CoreUserService, $state, REGEX) {
         //vars
-        let vm = this;
-        let test = CoreAuthService.getTokenData();
+        let vm = this;        
         vm.login = {email: '', password: ''};
+        vm.msgError = '';
+        vm.validateEmail = REGEX.validateEmail;
 
         //functions to view
-        vm.entrar = () => {           
-            CoreLoginService.login(vm.login).then(function(data) {
-                $location.path('/home');
-            }, function(err) {
-                console.log(err);
-            })
+        vm.signIn = () => {           
+            CoreLoginService.login(vm.login).then((data) => {
+                if(data === 'server undefined') {
+                    alert(data);
+                    return;
+                }
+
+                if(data.message) {
+                    vm.msgError = data.message;
+                    return;
+                }
+                $state.go('home');
+            }).catch((error) => {
+                console.log(error);
+            });
         }
         
     }

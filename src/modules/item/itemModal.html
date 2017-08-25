@@ -19,7 +19,7 @@
         </div> 
         <div class="buttons">
             <button class="btn btn-red btn-md" ng-click="closeThisDialog(0)"> Cancelar </button>    
-            <button class="btn btn-green btn-md" ng-class="{'disabled': !vm.formCadastro.$valid}" id="salvar" ng-click="vm.saveItem()" ng-disabled="!vm.formCadastro.$valid"> Salvar </button>
+            <button class="btn btn-green btn-md" id="salvar" ng-click="vm.saveItem()" ng-disabled="!vm.formCadastro.$valid"> Salvar </button>
         </div>
     </form>
 </div>

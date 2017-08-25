@@ -1,0 +1,10 @@
+.server-undefined-container {
+    @include flexDefault();   
+    flex-direction: column;
+    background-color: $colorDefault;
+    color: $colorBackground;
+    label {
+        font-size: 30px;
+        margin-top: 10px;
+    }
+}

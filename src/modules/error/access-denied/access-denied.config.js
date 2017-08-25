@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('controlpanel.accessDenied', [])
+    angular.module('controlpanel.error', [])
     .config(accessDeniedConfig);
 
     accessDeniedConfig.$inject = ['$stateProvider'];
@@ -10,7 +10,7 @@
             url: '/access-denied',
             views: {
                 'menu': {
-                    template: '<menu compress="vm.compress"></menu>'
+                    template: '<menu></menu>'
                 },                
                 'body': {
                     templateUrl: 'modules/error/access-denied/access-denied.html',

@@ -10,7 +10,7 @@
             url: '/item',
             views: {
                 'menu': {
-                    template: '<menu compress="vm.compress"></menu>'
+                    template: '<menu></menu>'
                 },                
                 'body': {
                     templateUrl: 'modules/item/item.html',

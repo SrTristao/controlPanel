@@ -12,7 +12,7 @@
             url: '/home',
             views: {
                 'menu': {
-                    template: '<menu compress="vm.compress"></menu>'
+                    template: '<menu></menu>'
                 },                
                 'body': {
                     templateUrl: 'modules/home/home.html',

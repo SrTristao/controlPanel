@@ -13,7 +13,7 @@
         'controlpanel.login',
         'controlpanel.user',
         'controlpanel.item',
-        'controlpanel.accessDenied'
+        'controlpanel.error'
     ]);
     
 })();

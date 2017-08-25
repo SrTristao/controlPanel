@@ -2,14 +2,21 @@
 
     'use strict';
 
-    angular.module('controlpanel.accessDenied')    
+    angular.module('controlpanel.error')    
     .controller('accessDeniedController', accessDeniedController);   
 
-    accessDeniedController.$inject = ['$location'];
+    accessDeniedController.$inject = ['DataFactory'];
 
-    function accessDeniedController($location) {
+    function accessDeniedController(DataFactory) {
         //vars
         let vm = this;
+        // vm.data = DataFactory;
+
+        // const init = () => {
+        //    // vm.data.menuItemActive = 'error';
+        // }
+
+        // init();
         
     }
 
