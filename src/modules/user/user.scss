@@ -32,8 +32,11 @@
 
 .userModal-container {
     background-color: $colorBackground;
-    width: auto;
+    width: auto;    
     height: 450px;
+    &.user-edit {
+        height: 370px;
+    }    
     .input-group {
         width: 100%
     }
@@ -49,8 +52,5 @@
         #salvar {
             margin-left: 10px;
         }
-    }
-    .ng-touched.ng-invalid {
-        border-color: red;
-    }
+    }      
 }

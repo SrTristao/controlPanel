@@ -18,13 +18,9 @@ const userSchema = new Schema({
 userSchema.pre("save", async function(next) {
     if (!this.createdAt) {
         this.createdAt = new Date();
-    }   
-    this.password = await bcrypt.hash(this.password);
+        this.password = await bcrypt.hash(this.password);
+    }      
     next();
 });
-userSchema.pre('update', async function() {
-    this.update({},{ $set: { password: await bcrypt.hash(this.password)} });
-});
-
 
 export const User = model<IUserModel>('User', userSchema);

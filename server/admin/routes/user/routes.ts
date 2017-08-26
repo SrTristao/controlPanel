@@ -6,6 +6,6 @@ export const router = express.Router();
 
 router.get('/', list)
         .get('/:id', findById)
-        .delete('/', deleteUser)
+        .delete('/:id', deleteUser)
         .post('/', saveUser)
         .put('/:id', updateUser);

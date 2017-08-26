@@ -7,7 +7,7 @@ export async function generateToken(data: any) {
 }
 
 export async function decodeToken(req: Request, res: Response, next: NextFunction): Promise<void> {
-  try {
+  try {    
     const token = req.get('Authorization') || `bearer ${req.query.t || req.body.authToken}`;  
     if (!token) return next();
 

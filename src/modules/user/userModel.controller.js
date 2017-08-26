@@ -5,9 +5,9 @@
     angular.module('controlpanel.user')    
     .controller('userModelController', userModelController);   
 
-    userModelController.$inject = ['CoreUserService','CoreAuthService', '$scope', 'DialogFactory', 'REGEX'];
+    userModelController.$inject = ['CoreUserService','CoreAuthService', '$scope', 'DialogFactory', 'REGEX', '$state'];
 
-    function userModelController(CoreUserService, CoreAuthService, $scope, DialogFactory, REGEX) {
+    function userModelController(CoreUserService, CoreAuthService, $scope, DialogFactory, REGEX, $state) {
         //vars
         let vm = this;                
         const userLogged = CoreAuthService.getTokenData();
@@ -20,7 +20,14 @@
         vm.saveUser = () => {
                                    
             if (!vm.user._id) {                
-                CoreUserService.saveUser(vm.user);
+                CoreUserService.saveUser(vm.user).then(data => {
+                    if(data === 'server undefined') {
+                        $scope.closeThisDialog();
+                        $state.go('server-undefined');
+                        return;
+                    }
+                    $scope.closeThisDialog(data);
+                });
                 return;
             } 
 
@@ -28,9 +35,18 @@
                 DialogFactory.openDialog('O usuário logado não pode mudar o nível de acesso do mesmo.');
                 return;
             }            
+            
+            if (angular.equals($scope.ngDialogData.user, vm.user)) {
+                $scope.closeThisDialog('Registro atualizado com sucesso.');
+            }                
 
             CoreUserService.updateUser(vm.user).then(data => {
-                console.log(data);
+                if(data === 'server undefined') {
+                    $scope.closeThisDialog();
+                    $state.go('server-undefined');
+                    return;
+                }
+                $scope.closeThisDialog({message: data, user:vm.user});
             });
         
         }       

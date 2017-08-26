@@ -23,10 +23,9 @@ export async function deleteUser(id: string) : Promise<any> {
 }
 
 export async function updateUser(user: IUser) : Promise<any> {    
-   return await User.findOne({id:user._id}, (err, doc) => {
+   return await User.findOne({_id:user._id}, async (err, doc) => {        
         doc.name = user.name;
-        doc.email = user.email;
-        doc.password = user.password;
+        doc.email = user.email;                        
         doc.role = user.role;
         doc.save();
     })

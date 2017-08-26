@@ -19,7 +19,7 @@ export async function deleteItem(id: string) : Promise<any> {
 }
 
 export async function updateItem(item: IItem) : Promise<any> {    
-   return await Item.findOne({id:item._id}, (err, doc) => {
+   return await Item.findOne({_id:item._id}, (err, doc) => {
         doc.name = item.name;
         doc.requester = item.requester;
         doc.status = item.status;

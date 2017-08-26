@@ -1,14 +1,9 @@
-// import { NextFunction, Request, Response }  from 'express';
-// import * as lodash from 'lodash';
-// import { decodeToken } from '../admin/middlewares/auth-service';
-
 import * as lodash from 'lodash';
 import { NextFunction, Request, Response } from 'express';
 
 export function authRequired(roles: string | string[] = null): (req: Request, res: Response, next: NextFunction) => Promise<void> {
 
-  return async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-    console.log('passou aqi' + req.user);
+  return async (req: Request, res: Response, next: NextFunction): Promise<any> => {    
     if (req.method === 'OPTIONS') {
       return next();
     }

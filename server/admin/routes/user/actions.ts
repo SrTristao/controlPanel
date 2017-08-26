@@ -18,18 +18,17 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
 export async function list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const result = await listUser(); 
-        res.status(401).send(result);
+        res.status(200).send(result);
     } catch (err) {
         next(err);
     }
 }
 
 export async function saveUser(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-        console.log(req.body)
+    try {        
         const result = await userService.saveUser(req.body); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.SAVE);
+            res.status(200).send({message: CONST.MSG.SUCCESS.SAVE, user: result});
         else
             res.status(401).send(CONST.MSG.ERR.SAVE);
     } catch (err) {
@@ -39,7 +38,7 @@ export async function saveUser(req: Request, res: Response, next: NextFunction):
 
 export async function deleteUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await userService.deleteUser(req.body.id); 
+        const result = await userService.deleteUser(req.params.id); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.DELETE);
         else
@@ -51,7 +50,7 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
 
 export async function updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await userService.updateUser(req.query); 
+        const result = await userService.updateUser(req.body); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.UPDATE);
         else

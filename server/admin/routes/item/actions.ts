@@ -18,7 +18,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
 export async function list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const result = await listItem(); 
-        res.status(401).send(result);
+        res.status(200).send(result);
     } catch (err) {
         next(err);
     }

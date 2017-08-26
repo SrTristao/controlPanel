@@ -2,8 +2,24 @@ $colorDefault:#2A3F54;
 $colorBackground: #F7F7F7;
 $text-color-default: #73879C;
 $text-color-green: #1ABB9C;
+.ng-touched.ng-invalid {
+  border-color: red;
+}  
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   background-color: $colorBackground !important;
+}
+.msg-dialog {
+  height: auto;
+  .msg-buttons {
+    margin-top: 10px;
+  }
+  .btn {
+    margin: 0 auto;
+    &.btn-md {
+      float: inherit !important;
+      margin-bottom: 0px;
+    }
+  }  
 }
 @mixin flexDefault() {
     width: 100%;
@@ -43,7 +59,7 @@ label.title {
     font-weight: 300;
     width:330px;
     margin:20px auto;
-    display:block;
+   // display:block;
     cursor:pointer;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
