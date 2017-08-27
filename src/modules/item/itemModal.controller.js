@@ -5,9 +5,9 @@
     angular.module('controlpanel.item')    
     .controller('itemModelController', itemModelController);   
 
-    itemModelController.$inject = ['CoreItemService', 'CoreAuthService', '$scope'];
+    itemModelController.$inject = ['CoreItemService', 'CoreAuthService', '$scope', '$state'];
 
-    function itemModelController(CoreItemService, CoreAuthService, $scope) {
+    function itemModelController(CoreItemService, CoreAuthService, $scope, $state) {
         //vars
         let vm = this;                
         const userLogged = CoreAuthService.getTokenData();
