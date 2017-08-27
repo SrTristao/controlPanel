@@ -9,8 +9,8 @@ export async function findById(id: number) : Promise<any> {
     return await User.findById(id);
 }
 
-export async function list() : Promise<IUser[]> {   
-   return await User.find();
+export async function list(filter: any) : Promise<IUser[]> {   
+   return await User.find(filter);
 }
 
 export async function saveUser(user: IUser) : Promise<IUser> {    

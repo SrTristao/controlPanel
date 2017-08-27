@@ -34,6 +34,9 @@
     background-color: $colorBackground;
     width: auto;    
     height: 450px;
+    .ng-touched.ng-invalid {
+        border-color: red;
+    } 
     &.user-edit {
         height: 370px;
     }    

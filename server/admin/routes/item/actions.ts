@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response }  from 'express';
-import { list as listItem } from '../../repositories/Item';
 import * as itemService from '../../services/Item';
 import { CONST } from '../../../utils/const';
 
@@ -17,7 +16,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
 
 export async function list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await listItem(); 
+        const result = await itemService.list(req.params.filter); 
         res.status(200).send(result);
     } catch (err) {
         next(err);
@@ -25,11 +24,10 @@ export async function list(req: Request, res: Response, next: NextFunction): Pro
 }
 
 export async function saveItem(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-        console.log(req.body)
+    try {        
         const result = await itemService.saveItem(req.body); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.SAVE);
+            res.status(200).send({message: CONST.MSG.SUCCESS.SAVE, item: result});
         else
             res.status(401).send(CONST.MSG.ERR.SAVE);
     } catch (err) {
@@ -39,7 +37,7 @@ export async function saveItem(req: Request, res: Response, next: NextFunction):
 
 export async function deleteItem(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await itemService.deleteItem(req.body.id); 
+        const result = await itemService.deleteItem(req.params.id); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.DELETE);
         else
@@ -51,7 +49,7 @@ export async function deleteItem(req: Request, res: Response, next: NextFunction
 
 export async function updateItem(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await itemService.updateItem(req.query); 
+        const result = await itemService.updateItem(req.body); 
         if(result)            
             res.status(200).send(CONST.MSG.SUCCESS.UPDATE);
         else

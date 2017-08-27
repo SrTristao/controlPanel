@@ -5,25 +5,47 @@
     angular.module('controlpanel.item')    
     .controller('itemModelController', itemModelController);   
 
-    itemModelController.$inject = ['$scope'];
+    itemModelController.$inject = ['CoreItemService', 'CoreAuthService', '$scope'];
 
-    function itemModelController($scope) {
+    function itemModelController(CoreItemService, CoreAuthService, $scope) {
         //vars
         let vm = this;                
-
+        const userLogged = CoreAuthService.getTokenData();
         const init = () => {
             vm.item = $scope.ngDialogData ? angular.copy($scope.ngDialogData.item) : {};            
         }
 
-        init();
-           
+        init();                   
+        
         vm.saveItem = () => {
-            // if (vm.item._id) {
-            //     CoreItemService.saveItem(vm.item);
-            // } else {
-            //     CoreItemService.editItem(vm.item);
-            // }
-        }       
+                                   
+            if (!vm.item._id) {             
+                vm.item.user = {_id: userLogged._id, name: userLogged.name}   
+                CoreItemService.saveItem(vm.item).then(data => {
+                    if(data === 'server undefined') {
+                        $scope.closeThisDialog();
+                        $state.go('server-undefined');
+                        return;
+                    }
+                    $scope.closeThisDialog(data);
+                });
+                return;
+            }                        
+            
+            if (angular.equals($scope.ngDialogData.item, vm.item)) {
+                $scope.closeThisDialog('Registro atualizado com sucesso.');
+            }                
+
+            CoreItemService.updateItem(vm.item).then(data => {
+                if(data === 'server undefined') {
+                    $scope.closeThisDialog();
+                    $state.go('server-undefined');
+                    return;
+                }
+                $scope.closeThisDialog({message: data, item:vm.item});
+            });
+        
+        }           
     }
 
 })();

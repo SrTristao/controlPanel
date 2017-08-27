@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response }  from 'express';
-import { list as listUser } from '../../repositories/User';
 import * as userService from '../../services/User';
 import { CONST } from '../../../utils/const';
 
@@ -17,7 +16,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
 
 export async function list(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const result = await listUser(); 
+        const result = await userService.list(req.params.filter); 
         res.status(200).send(result);
     } catch (err) {
         next(err);
@@ -27,7 +26,9 @@ export async function list(req: Request, res: Response, next: NextFunction): Pro
 export async function saveUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {        
         const result = await userService.saveUser(req.body); 
-        if(result)            
+        if(typeof result === 'string')            
+            res.status(200).send(result);
+        else if (result)
             res.status(200).send({message: CONST.MSG.SUCCESS.SAVE, user: result});
         else
             res.status(401).send(CONST.MSG.ERR.SAVE);

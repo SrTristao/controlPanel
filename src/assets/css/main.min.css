@@ -1,6 +1,3 @@
-.ng-touched.ng-invalid {
-  border-color: red; }
-
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   background-color: #F7F7F7 !important; }
 
@@ -125,7 +122,7 @@ label.title {
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all; }
-  .input-group input:focus ~ label, .input-group input:valid ~ label, .input-group select:focus ~ label, .input-group select:valid ~ label {
+  .input-group input:focus ~ label, .input-group input:valid ~ label, .input-group input[disabled] ~ label, .input-group select:focus ~ label, .input-group select:valid ~ label {
     top: -20px;
     font-size: 14px;
     color: #2A3F54; }
@@ -147,9 +144,11 @@ label.title {
       left: 50%; }
     .input-group .bar:after {
       right: 50%; }
+  .input-group input[disabled] ~ .bar:after {
+    display: none; }
   .input-group input:focus ~ .bar:before, .input-group input:focus ~ .bar:after, .input-group select:focus ~ .bar:before, .input-group select:focus ~ .bar:after {
     width: 50%; }
-  .input-group input:focus ~ .highlight, .input-group select:focus ~ .highlight {
+  .input-group input:focus ~ .highlight, .input-group input[disabled] ~ .highlight, .input-group select:focus ~ .highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     -moz-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease; }
@@ -371,6 +370,8 @@ label.title {
   background-color: #F7F7F7;
   width: auto;
   height: 290px; }
+  .itemModal-container .ng-touched.ng-invalid {
+    border-color: red; }
   .itemModal-container .input-group {
     width: 100%; }
   .itemModal-container label.title {
@@ -396,6 +397,8 @@ label.title {
     width: 320px; }
     .login-container .input-group input {
       background: white; }
+  .login-container .ng-touched.ng-invalid {
+    border-color: red; }
   .login-container .box {
     position: relative;
     height: 410px;
@@ -491,6 +494,8 @@ label.title {
   background-color: #F7F7F7;
   width: auto;
   height: 450px; }
+  .userModal-container .ng-touched.ng-invalid {
+    border-color: red; }
   .userModal-container.user-edit {
     height: 370px; }
   .userModal-container .input-group {

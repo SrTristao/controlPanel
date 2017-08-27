@@ -5,8 +5,8 @@ export async function findById(id: number) : Promise<any> {
     return await Item.findById(id);
 }
 
-export async function list() : Promise<IItem[]> {    
-   return await Item.find();
+export async function list(filter: any) : Promise<IItem[]> {    
+   return await Item.find(filter);
 }
 
 export async function saveItem(item: IItem) : Promise<IItem> {    
@@ -20,8 +20,7 @@ export async function deleteItem(id: string) : Promise<any> {
 
 export async function updateItem(item: IItem) : Promise<any> {    
    return await Item.findOne({_id:item._id}, (err, doc) => {
-        doc.name = item.name;
-        doc.requester = item.requester;
+        doc.name = item.name;        
         doc.status = item.status;
         doc.save();
     })

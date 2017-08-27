@@ -2,7 +2,7 @@
     <label class="title">{{vm.user._id ? 'Editar usuário' : 'Novo usuário'}}</label>
     <form novalidate name="vm.formCadastro">
         <div class="input-group active-float-left width-lg">      
-            <input type="text" required ng-model="vm.user.email" ng-pattern='vm.validateEmail'>
+            <input type="text" required ng-model="vm.user.email" ng-pattern='vm.validateEmail' ng-disabled="vm.user._id">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Email</label>

@@ -26,6 +26,10 @@
                         $state.go('server-undefined');
                         return;
                     }
+                    if(typeof data === 'string') {
+                        DialogFactory.openDialog(data);
+                        return;
+                    }
                     $scope.closeThisDialog(data);
                 });
                 return;

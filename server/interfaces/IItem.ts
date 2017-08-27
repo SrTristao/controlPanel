@@ -1,6 +1,9 @@
 import { Document } from 'mongoose';
 export interface IItem extends Document {
     name: String;
-    requester: String;
+    user: {
+        _id: any,
+        name: string
+    }
     status: String;
 }

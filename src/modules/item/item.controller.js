@@ -5,29 +5,20 @@
     angular.module('controlpanel.item')    
     .controller('itemController', itemController);   
 
-    itemController.$inject = ['DataFactory', 'ngDialog'];
+    itemController.$inject = ['DataFactory', 'ngDialog', 'CoreItemService', '$scope', 'DialogFactory'];
 
-    function itemController(DataFactory, ngDialog) {
+    function itemController(DataFactory, ngDialog, CoreItemService, $scope, DialogFactory) {
         //vars
         let vm = this;
         vm.data = DataFactory;
+        vm.filterItem = {name: '', requester: '', status: ''};
 
         const init = () => {
             vm.data.menuItemActive = 'item';
+            CoreItemService.getListItem(vm.filterItem).then(data => vm.listItens = data);  
         }
 
         init();
-
-        vm.listItens = [{_id: 123213312, name: 'TESTE', status: 'Concluido', requester: 'User 1'},
-                        {_id: 123213311, name: 'TESTE 1', status: 'Pendente', requester: 'User 1'},
-                        {_id: 123213313, name: 'TESTE 2', status: 'Concluido', requester: 'User 1'},
-                        {_id: 123213314, name: 'TESTE 3', status: 'Pendente', requester: 'User 1'},
-                        {_id: 123213315, name: 'TESTE 4', status: 'Concluido', requester: 'User 1'},
-                        {_id: 123213316, name: 'TESTE 5', status: 'Pendente', requester: 'User 1'},
-                        {_id: 123213317, name: 'TESTE 2', status: 'Concluido', requester: 'User 1'},
-                        {_id: 123213318, name: 'TESTE 3', status: 'Pendente', requester: 'User 1'},
-                        {_id: 123213319, name: 'TESTE 4', status: 'Concluido', requester: 'User 1'},
-                        {_id: 1232133111, name: 'TESTE 5', status: 'Pendente', requester: 'User 1'}];
         
         vm.newItem = () => {
             const newItem = ngDialog.open({
@@ -38,7 +29,13 @@
                 showClose: false,
                 controller: 'itemModelController',
                 controllerAs: 'vm'                
-            });                          
+            });   
+            
+            newItem.closePromise.then(data => {
+                if(!data.value) return;
+                DialogFactory.openDialog(data.value.message);
+                vm.listItens.push(data.value.item);
+            })
         }
 
         vm.editItem = (item) => {
@@ -54,6 +51,36 @@
                     item: item
                 }               
             }); 
+
+            editItem.closePromise.then(data => {
+                if(!data.value) return;
+
+                if(typeof data.value === 'string'){
+                    DialogFactory.openDialog(data.value);                    
+                    return;
+                }
+                DialogFactory.openDialog(data.value.message);
+                let count = 0;
+                vm.listItens.find(itemEdited => { count++; return itemEdited._id === data.value.item._id});
+                vm.listItens.splice(count-1, 1, data.value.item);
+            })
+        }
+
+        vm.deleteItem = (item) => {            
+            DialogFactory.openDialogConfirm('Deseja deletar ' + item.name + ' ?').then(data => {
+                if (data) {
+                    CoreItemService.deleteItem(item._id).then((data) => {
+                        DialogFactory.openDialog(data);
+                        let count = 0;
+                        vm.listItens.find(itemDeleted => { count++; return itemDeleted._id === item._id});
+                        vm.listItens.splice(count-1, 1);
+                    })
+                }
+            })           
+        }
+
+        vm.search = () => {
+            CoreItemService.getListItem(vm.filterItem).then(data => vm.listItens = data);  
         }
     }
 

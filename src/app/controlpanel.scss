@@ -2,9 +2,7 @@ $colorDefault:#2A3F54;
 $colorBackground: #F7F7F7;
 $text-color-default: #73879C;
 $text-color-green: #1ABB9C;
-.ng-touched.ng-invalid {
-  border-color: red;
-}  
+ 
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   background-color: $colorBackground !important;
 }
@@ -164,7 +162,7 @@ label.title {
         -moz-transition:0.2s ease all; 
         -webkit-transition:0.2s ease all;
     }
-    input:focus ~ label, input:valid ~ label, select:focus ~ label, select:valid ~ label {
+    input:focus ~ label, input:valid ~ label,input[disabled] ~ label , select:focus ~ label, select:valid ~ label {
         top:-20px;
         font-size:14px;
         color: $colorDefault;
@@ -190,14 +188,17 @@ label.title {
         &:after {
             right:50%; 
         }
-    } 
+    }     
+    input[disabled] ~ .bar:after {
+      display: none;
+    }
     input:focus ~ .bar:before, input:focus ~ .bar:after, select:focus ~ .bar:before, select:focus ~ .bar:after {
         width:50%;
     }     
-    input:focus ~ .highlight, select:focus ~ .highlight {
-    -webkit-animation:inputHighlighter 0.3s ease;
-    -moz-animation:inputHighlighter 0.3s ease;
-    animation:inputHighlighter 0.3s ease;
+    input:focus ~ .highlight, input[disabled] ~ .highlight, select:focus ~ .highlight {
+      -webkit-animation:inputHighlighter 0.3s ease;
+      -moz-animation:inputHighlighter 0.3s ease;
+      animation:inputHighlighter 0.3s ease;
     }  
     /* ANIMATIONS ================ */
     @-webkit-keyframes inputHighlighter {

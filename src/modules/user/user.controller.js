@@ -13,9 +13,10 @@
         vm.data = DataFactory;
         const userLogged = CoreAuthService.getTokenData();
         vm.listUsers = [];
+        vm.filterUser = {name: '', role: ''}
         const init = () => {
             vm.data.menuItemActive = 'user';
-            CoreUserService.getListUser().then(data => vm.listUsers = data);           
+            CoreUserService.getListUser(vm.filterUser).then(data => vm.listUsers = data);           
         }
 
         init();
@@ -32,7 +33,7 @@
             });               
             
             newUser.closePromise.then(data => {
-                if(!data.value) return;
+                if(!data.value) return;                                                        
                 DialogFactory.openDialog(data.value.message);
                 vm.listUsers.push(data.value.user);
             })
@@ -81,6 +82,10 @@
                     })
                 }
             })           
+        }
+
+        vm.search = () => {            
+            CoreUserService.getListUser(vm.filterUser).then(data => vm.listUsers = data);   
         }
     }
 
