@@ -13,7 +13,8 @@
         'controlpanel.login',
         'controlpanel.user',
         'controlpanel.item',
-        'controlpanel.error'
+        'controlpanel.error',
+        'controlpanel.settings'
     ]);
     
 })();

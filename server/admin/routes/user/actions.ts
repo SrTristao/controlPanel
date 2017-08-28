@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response }  from 'express';
 import * as userService from '../../services/User';
+import * as userRepository from '../../repositories/user';
 import { CONST } from '../../../utils/const';
 
 export async function findById(req: Request, res: Response, next: NextFunction) : Promise<void> {
@@ -60,3 +61,48 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
         next(err);
     }
 }
+
+export async function changePassword(req: Request, res:Response, next: NextFunction): Promise<void> {
+    try {
+        const result = await userService.changePassword(req.body);
+        if(result) {
+            res.setHeader('X-Token', result);
+            res.status(200).send('Senha trocada com sucesso!');
+        }
+        else
+            res.status(401).send(CONST.MSG.ERR.UPDATE);
+    } catch (err) {
+        errorHandler(err, res, next);
+    }
+}
+
+export async function lastInserts(req: Request, res:Response, next: NextFunction): Promise<void> {
+    try {
+        const result = await userRepository.lastInserts();
+        res.status(200).send(result);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export async function totUsers(req: Request, res:Response, next: NextFunction): Promise<void> {
+    try {
+        const result = await userRepository.selectCount();
+        res.status(200).send({count: result});
+    } catch (err) {
+        next(err);
+    }
+}
+
+function errorHandler(err: Error, res: Response, next: NextFunction): any {
+    switch (err.message) {
+      case 'user-not-found':
+        return res.status(404).send({ message: 'Usuário não encontrado' });
+      case 'user-inactive':
+        return res.status(403).send({ message: 'Usuário inativo' });
+      case 'invalid-password':
+        return res.status(400).send({ message: 'Senha inválida' });
+      default:
+        next(err);
+    }
+  }

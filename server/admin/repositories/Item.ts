@@ -25,3 +25,11 @@ export async function updateItem(item: IItem) : Promise<any> {
         doc.save();
     })
 }
+
+export async function lastInserts(): Promise<any> {
+    return await Item.find().sort('-createdAt').limit(5);
+}
+
+export async function selectCount(): Promise<any> {
+    return await Item.count({});
+}

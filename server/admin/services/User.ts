@@ -1,6 +1,8 @@
 import * as UserRepository from '../repositories/User';
 import { IUser } from '../../interfaces/IUser';
 import * as Utils from '../../utils/utils';
+import * as bcrypt from '../../services/bcrypt';
+import { login } from './auth';
 
 export async function list(filter: any) {   
     filter = JSON.parse(filter); 
@@ -16,7 +18,7 @@ export async function list(filter: any) {
         delete filter.createdAt;
     }
 
-    return await UserRepository.list(Utils.addLike(filter));
+    return await UserRepository.list( await Utils.addLike(filter));
 }
 export async function findByEmail(email: string) {
     return await UserRepository.findByEmail(email);
@@ -39,4 +41,14 @@ export async function deleteUser(id: string) {
 
 export async function updateUser(user: IUser) {
    return await UserRepository.updateUser(user);
+}
+
+export async function changePassword(data: any) {
+    const user = await findByEmail(data.email);
+
+    await bcrypt.compare(user.password, data.password);
+
+    await UserRepository.changePassword(data);
+
+    return await login(data.email, data.newPassword);
 }

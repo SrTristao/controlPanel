@@ -5,9 +5,9 @@
     angular.module('controlpanel.user')    
     .controller('userController', userController);   
 
-    userController.$inject = ['CoreUserService', 'ngDialog', 'DataFactory', 'DialogFactory', 'CoreAuthService'];
+    userController.$inject = ['CoreUserService', 'ngDialog', 'DataFactory', 'DialogFactory', 'CoreAuthService', '$state'];
 
-    function userController(CoreUserService, ngDialog, DataFactory, DialogFactory, CoreAuthService) {
+    function userController(CoreUserService, ngDialog, DataFactory, DialogFactory, CoreAuthService, $state) {
         //vars
         let vm = this;
         vm.data = DataFactory;
@@ -16,7 +16,13 @@
         vm.filterUser = {name: '', role: ''}
         const init = () => {
             vm.data.menuItemActive = 'user';
-            CoreUserService.getListUser(vm.filterUser).then(data => vm.listUsers = data);           
+            CoreUserService.getListUser(vm.filterUser).then(data => {
+                if(data === 'server undefined') {                 
+                    $state.go('server-undefined');
+                    return;
+                }
+                vm.listUsers = data
+            });           
         }
 
         init();
@@ -75,6 +81,10 @@
             DialogFactory.openDialogConfirm('Deseja deletar ' + user.name + ' ?').then(data => {
                 if (data) {
                     CoreUserService.deleteUser(user._id).then((data) => {
+                        if(data === 'server undefined') {                 
+                            $state.go('server-undefined');
+                            return;
+                        }
                         DialogFactory.openDialog(data);
                         let count = 0;
                         vm.listUsers.find(userDeleted => { count++; return userDeleted._id === user._id});
@@ -85,7 +95,13 @@
         }
 
         vm.search = () => {            
-            CoreUserService.getListUser(vm.filterUser).then(data => vm.listUsers = data);   
+            CoreUserService.getListUser(vm.filterUser).then(data => {
+                if(data === 'server undefined') {                 
+                    $state.go('server-undefined');
+                    return;
+                }
+                vm.listUsers = data
+            });   
         }
     }
 

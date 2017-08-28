@@ -1,8 +1,8 @@
 <div class="menu-container">
     <div ng-class="{'menu-open': vm.compress, 'menu-close':!vm.compress}"> 
-            <div class="menu-item-bars" ng-click="vm.menuCompress()">            
-                    <i class="fa fa-bars" aria-hidden="true"></i>                                
-                </div> 
+        <div class="menu-item-bars" ng-click="vm.menuCompress()">            
+            <i class="fa fa-bars" aria-hidden="true"></i>                                
+        </div> 
         <div class="menu-item" ng-class="{'item-menu-active': vm.data.menuItemActive == 'home'}" ng-click="vm.changeScreen('home')">            
             <i class="fa fa-home" aria-hidden="true"></i>            
             <span> Home </span>
@@ -14,6 +14,10 @@
         <div class="menu-item" ng-class="{'item-menu-active': vm.data.menuItemActive == 'item'}" ng-click="vm.changeScreen('item')">            
             <i class="fa fa-item" aria-hidden="true"></i>            
             <span> Itens </span>
+        </div>  
+        <div class="menu-item-settings" ng-class="{'item-menu-active': vm.data.menuItemActive == 'settings'}" ng-click="vm.changeScreen('settings')">            
+            <i class="fa fa-settings" aria-hidden="true"></i>            
+            <span> Configurações </span>
         </div>     
     </div>
 </div>

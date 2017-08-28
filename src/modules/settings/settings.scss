@@ -1,0 +1,39 @@
+.settings-container {    
+    display: flex;
+    flex: 1 1 auto;
+    height: 100%;      
+    overflow-y: scroll;
+    flex-direction: column;
+    .settings-options {
+        margin-top: 20px;
+        margin-left: 34px;
+    }
+}
+
+.changePassword-container {
+    background-color: $colorBackground;
+    width: auto;    
+    height: 365px;
+    .ng-touched.ng-invalid {
+        border-color: red;
+    } 
+    &.user-edit {
+        height: 370px;
+    }    
+    .input-group {
+        width: 100%
+    }
+    label.title {
+        margin-left: 0px;
+        font-size: 20px;
+    }
+    form {
+        margin-top: 50px;
+    }
+    .buttons {
+        float: left;
+        #salvar {
+            margin-left: 10px;
+        }
+    }      
+}

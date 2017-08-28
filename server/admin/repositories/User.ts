@@ -1,5 +1,6 @@
 import { User } from '../../models/User';
 import { IUser } from '../../interfaces/IUser';
+import * as bcrypt from '../../services/bcrypt';
 
 export async function findByEmail(email: string) : Promise<any> {
     return await User.findOne({email: email});
@@ -29,4 +30,19 @@ export async function updateUser(user: IUser) : Promise<any> {
         doc.role = user.role;
         doc.save();
     })
+}
+
+export async function changePassword(user: any): Promise<any> {
+    return await User.findOne({email: user.email}, async (err, doc) => {
+        doc.password = await bcrypt.hash(user.newPassword);
+        doc.save();
+    })
+}
+
+export async function lastInserts(): Promise<any> {
+    return await User.find().sort('-createdAt').limit(5);
+}
+
+export async function selectCount(): Promise<any> {
+    return await User.count({});
 }

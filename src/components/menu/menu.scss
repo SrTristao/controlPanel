@@ -14,13 +14,18 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center; 
-        .menu-item {
+        .menu-item, .menu-item-settings {
             &:hover {
                 background-color: $text-color-green;
             }   
         }
+       
         .item-menu-active {
             background-color: $text-color-green;
+        }
+        .menu-item-settings {
+            position: absolute;
+            bottom: 0;
         }
         .menu-item-bars {            
             cursor: pointer;
@@ -28,6 +33,7 @@
             flex-direction: column;
             height: 62px; 
         }
+
          @media screen and (max-width: 767px) {
             .menu-item-bars {
                 display: none;
@@ -42,7 +48,7 @@
 
     .menu-open {
         min-width: 150px;
-        .menu-item {
+        .menu-item, .menu-item-settings {
             margin-top: 5px;
             margin-bottom: 5px;
             cursor: pointer;
@@ -53,11 +59,14 @@
                 margin-top: 5px;
             }
         }
+        .menu-item-settings {            
+            width: 150px;
+        }
     }
 
     .menu-close {
         min-width: 70px;
-        .menu-item {
+        .menu-item, .menu-item-settings  {
             cursor: pointer;
             @include flexDefault();
             flex-direction: column;
@@ -65,6 +74,9 @@
             span {
                 display: none;
             }
+        }
+        .menu-item-settings {            
+            width: 70px;
         }
     }        
 }

@@ -56,8 +56,7 @@ label.title {
     font-size: 16px;
     font-weight: 300;
     width:330px;
-    margin:20px auto;
-   // display:block;
+    margin:20px auto;   
     cursor:pointer;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
@@ -131,6 +130,12 @@ label.title {
         &:hover {
             background-color: #f78f8f;
         }
+    }
+
+    @media screen and (max-width: 767px){
+      & {
+        width: 150px;
+      }
     }
 }
 .input-group {
@@ -248,6 +253,18 @@ label.title {
 }
 .fa-edit:before {
     content: url('../icons/edit.png');
+}
+.fa-settings:before {
+  content: url('../icons/settings.png');
+}
+.fa-key:before {
+  content: url('../icons/key.png');
+}
+.fa-user-sm:before {
+  content: url('../icons/user-small.png');
+}
+.fa-item-sm:before {
+  content: url('../icons/item-small.png');
 }
 
 .shadow-z-1 {

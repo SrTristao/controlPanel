@@ -13,11 +13,12 @@
         <script src="./lib/angular-ui-router/angular-ui-router.min.js"></script>        
         <script src="./lib/angular-local-storage/angular-local-storage.js"></script> 
         <script src="./lib/angular-ui-router-events/stateEvents.min.js"></script>         
+        <script src="./lib/highcharts/highcharts.js"></script>  
         <script src="./assets/js/main.min.js"></script>
         <script src="./lib/core/controlpanel.core.1.0.1.min.js"></script>         
         <title> Control Panel</title>
     </head>
-    <body ng-app="controlpanel" ng-cloak ng-controller="controlpanelController as vm">
+    <body ng-app="controlpanel" ng-cloak ng-controller="controlpanelController as vm" ng-clock>
         <div ui-view name="menu" autoscroll="false"></div>           
         <div ui-view name="body" autoscroll="false"></div>
     </body>

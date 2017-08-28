@@ -5,17 +5,23 @@
     angular.module('controlpanel.item')    
     .controller('itemController', itemController);   
 
-    itemController.$inject = ['DataFactory', 'ngDialog', 'CoreItemService', '$scope', 'DialogFactory'];
+    itemController.$inject = ['DataFactory', 'ngDialog', 'CoreItemService', '$scope', 'DialogFactory', '$state'];
 
-    function itemController(DataFactory, ngDialog, CoreItemService, $scope, DialogFactory) {
+    function itemController(DataFactory, ngDialog, CoreItemService, $scope, DialogFactory, $state) {
         //vars
         let vm = this;
         vm.data = DataFactory;
-        vm.filterItem = {name: '', requester: '', status: ''};
+        vm.filterItem = {name: '', status: ''};
 
         const init = () => {
             vm.data.menuItemActive = 'item';
-            CoreItemService.getListItem(vm.filterItem).then(data => vm.listItens = data);  
+            CoreItemService.getListItem(vm.filterItem).then(data => {
+                if(data === 'server undefined') {                 
+                    $state.go('server-undefined');
+                    return;
+                }
+                vm.listItens = data
+            });  
         }
 
         init();
@@ -70,6 +76,10 @@
             DialogFactory.openDialogConfirm('Deseja deletar ' + item.name + ' ?').then(data => {
                 if (data) {
                     CoreItemService.deleteItem(item._id).then((data) => {
+                        if(data === 'server undefined') {                 
+                            $state.go('server-undefined');
+                            return;
+                        }
                         DialogFactory.openDialog(data);
                         let count = 0;
                         vm.listItens.find(itemDeleted => { count++; return itemDeleted._id === item._id});
@@ -80,7 +90,13 @@
         }
 
         vm.search = () => {
-            CoreItemService.getListItem(vm.filterItem).then(data => vm.listItens = data);  
+            CoreItemService.getListItem(vm.filterItem).then(data => { 
+                if(data === 'server undefined') {                 
+                    $state.go('server-undefined');
+                    return;
+                }
+                vm.listItens = data
+             });  
         }
     }
 

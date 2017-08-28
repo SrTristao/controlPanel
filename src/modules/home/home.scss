@@ -1,6 +1,62 @@
-.home-container {    
-    display: flex;
+.home-container {   
+    @include flexDefault();  
+    width: auto;
     flex: 1 1 auto;
-    height: 100%;      
-    overflow-y: scroll;
+    justify-content: flex-start;
+    flex-direction: column;  
+    align-items: flex-start; 
+    overflow: auto;
+    .statistics-home {        
+        width: 84%;  
+        margin-left: 34px;  
+        margin-top: 20px;    
+        .statistics-item {
+            width: 150px;
+            float: left;
+            .title {
+                font-size: 16px;
+            }
+            .middle {
+                font-size: 30px;
+                font-weight: bold;
+            }
+            
+            &:first-child {
+                span {
+                    margin-left: 0px;
+                }
+                border-left: 0;
+            }    
+            & {
+                span {
+                    margin-left: 10px;
+                }                
+                border-left: 2px solid #ADB2B5;
+            } 
+            
+            @media screen and(max-width: 430px) {
+                &:first-child {
+                    margin-top: 0;
+                }
+                & {
+                    width: 100%;
+                    margin-top: 15px;
+                    span {
+                        margin-left: 0px;
+                    }
+                    border-left: 0;
+                }  
+            }
+        }
+    }
+    .last-inserts {
+        margin-top: 20px;
+        margin-left: 34px;
+        label {
+            font-size: 22px;
+        }
+        div {
+            margin-top: 5px;
+        }
+    }
 }
