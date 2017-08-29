@@ -1,0 +1,22 @@
+FORMAT: 1A
+
+# ControlPanel - Auth
+
+This section is a API allowing users to login in system.
+
+## Auth API Root [/admin/auth]
+
+## Save Item [POST]
++ Request (application/json)
+    {
+        email: string - Email of user
+        password: string - Password of user
+    }
++ Response 200 (application/json)
+    + Header
+        + Token
+    {
+        token: string - Generated with user data
+    }
+
+    

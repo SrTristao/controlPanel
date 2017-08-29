@@ -3,9 +3,17 @@ import { IUser } from '../../interfaces/IUser';
 import * as Utils from '../../utils/utils';
 import * as bcrypt from '../../services/bcrypt';
 import { login } from './auth';
+import { ServiceError } from '../../errors/service';
+import * as mongoose from 'mongoose';
+import { validate } from '../validators/user';
 
-export async function list(filter: any) {   
-    filter = JSON.parse(filter); 
+export async function list(filter: any) { 
+    try {
+        filter = JSON.parse(filter); 
+    } catch (e) {
+        throw new ServiceError('parameter-not-expected'); 
+    }  
+    
     if(!filter.name) {
         delete filter.name;
     }
@@ -24,26 +32,42 @@ export async function findByEmail(email: string) {
     return await UserRepository.findByEmail(email);
 }
 export async function findById(id: number) {
+    if(!mongoose.Types.ObjectId.isValid(id)) throw new ServiceError('invalid-object-id');  
+
     return await UserRepository.findById(id);
 }
 
 export async function saveUser(user: IUser) {
+    await validate(user);
+
     const alreadyExists = await UserRepository.findByEmail(user.email);
+
     if (alreadyExists) {
         return 'Email já cadastrado.'
     }
+    
     return await UserRepository.saveUser(user);
 }
 
 export async function deleteUser(id: string) {
+    if(!mongoose.Types.ObjectId.isValid(id)) throw new ServiceError('invalid-object-id');
+
     return await UserRepository.deleteUser(id);
 }
 
 export async function updateUser(user: IUser) {
-   return await UserRepository.updateUser(user);
+    await validate(user);
+
+    const alreadyExists = await UserRepository.findById(user._id);
+
+    if (!alreadyExists) throw new ServiceError('user-not-found');
+
+    return await UserRepository.updateUser(user);
 }
 
 export async function changePassword(data: any) {
+    if (!data.email || !data.password || data.newPassword) throw new ServiceError('object-invalid');
+    
     const user = await findByEmail(data.email);
 
     await bcrypt.compare(user.password, data.password);

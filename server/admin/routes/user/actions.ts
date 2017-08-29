@@ -11,7 +11,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
         else
             res.status(401).send(CONST.MSG.ERR.FINDBYID);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -20,12 +20,12 @@ export async function list(req: Request, res: Response, next: NextFunction): Pro
         const result = await userService.list(req.params.filter); 
         res.status(200).send(result);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
 export async function saveUser(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {        
+    try {                    
         const result = await userService.saveUser(req.body); 
         if(typeof result === 'string')            
             res.status(200).send(result);
@@ -34,7 +34,7 @@ export async function saveUser(req: Request, res: Response, next: NextFunction):
         else
             res.status(401).send(CONST.MSG.ERR.SAVE);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -95,7 +95,13 @@ export async function totUsers(req: Request, res:Response, next: NextFunction): 
 }
 
 function errorHandler(err: Error, res: Response, next: NextFunction): any {
-    switch (err.message) {
+    switch (err.message) {      
+      case 'object-invalid':
+        return res.status(401).send({message: 'Usuário inválido'})
+      case 'invalid-object-id':
+        return res.status(401).send({ message: 'Parametro inválido'});
+      case 'parameter-not-expected':
+        return res.status(401).send({ message: 'Parametro não experado.'})
       case 'user-not-found':
         return res.status(404).send({ message: 'Usuário não encontrado' });
       case 'user-inactive':

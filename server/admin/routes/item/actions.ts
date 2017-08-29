@@ -11,7 +11,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
         else
             res.status(401).send(CONST.MSG.ERR.FINDBYID);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -20,7 +20,7 @@ export async function list(req: Request, res: Response, next: NextFunction): Pro
         const result = await itemService.list(req.params.filter); 
         res.status(200).send(result);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -32,7 +32,7 @@ export async function saveItem(req: Request, res: Response, next: NextFunction):
         else
             res.status(401).send(CONST.MSG.ERR.SAVE);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -44,7 +44,7 @@ export async function deleteItem(req: Request, res: Response, next: NextFunction
         else
             res.status(401).send(CONST.MSG.ERR.DELETE);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -56,7 +56,7 @@ export async function updateItem(req: Request, res: Response, next: NextFunction
         else
             res.status(401).send(CONST.MSG.ERR.UPDATE);
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -77,3 +77,18 @@ export async function totItems(req: Request, res:Response, next: NextFunction): 
         next(err);
     }
 }
+
+function errorHandler(err: Error, res: Response, next: NextFunction): any {
+    switch (err.message) {      
+      case 'object-invalid':
+        return res.status(401).send({message: 'Item inválido'})
+      case 'invalid-object-id':
+        return res.status(401).send({ message: 'Parametro inválido'});
+      case 'parameter-not-expected':
+        return res.status(401).send({ message: 'Parametro não experado.'})
+      case 'item-not-found':
+        return res.status(404).send({ message: 'Item não encontrado' });
+      default:
+        next(err);
+    }
+  }

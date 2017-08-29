@@ -1,0 +1,124 @@
+FORMAT: 1A
+
+# ControlPanel - User
+
+This section is a API allowing users to view users and create,delete and update them.
+
+## Users API Root [/admin/user]
+
++ Headers 
+    All routes has Authorization token in request.
+
+## List All Users [GET /filter/:filter] 
++ Parameter
+    + filter: {
+        name: string - Name of user
+        role: string - Role of user
+    }
++ Response 200 (application/json)
+    [
+        {
+            _id: string - Id of user
+            createdAt: timestamp - Date of creation of user
+            name: string - Name of user
+            email: string - Email of user
+            password: string - Password of user
+            role: string - Role of user
+        }
+    ]
+
+## Count Users [GET /totUsers]
+
++ Response 200 (application/json)
+    {
+        count: number - Total of user
+    }
+
+## Last Inserts [GET]
+
+return limit 5
+
++ Response 200 (application/json)
+    [
+        {
+            _id: string - Id of user
+            createdAt: timestamp - Date of creation of user
+            name: string - Name of user
+            email: string - Email of user
+            password: string - Password of user
+            role: string - Role of user
+        }
+    ]
+
+## Find user by id [GET /:id]
++ Parameter
+    + id: string - Id of user
+
++ Response 200 (application/json)
+    {
+        _id: string - Id of user
+        createdAt: timestamp - Date of creation of user
+        name: string - Name of user
+        email: string - Email of user
+        password: string - Password of user
+        role: string - Role of user
+    }
+
+## Save User [POST]
++ Request (application/json)
+    {
+        name: string - Name of user
+        email: string - Email of user
+        password: string - Password of user
+        role: string - Role of user 
+    }
++ Response 200 (application/json)
+    {
+        'Email já cadastrado'
+    }
++ Response 200 (application/json)
+    {        
+        message: 'Registro salvo com sucesso.'
+        {
+            _id: string - Id of user
+            createdAt: timestamp - Date of creation of user
+            name: string - Name of user
+            email: string - Email of user
+            password: string - Password of user
+            role: string - Role of user
+        }  
+    }
+
+## Change Password [POST /changePassword]
++ Request (application/json)
+    {
+        email: string - Email of user
+        password: string - Password of user
+        newPassword: string - New password of user
+    }
++ Response 200 (application/json)
+    + Header 
+        + token
+    {
+        'Senha trocada com sucesso!'.
+    }
+
+
+## Delete User [Delete /:id]
++ Parameter
+    + id: string - Id of user
+
++ Response 200 (application/json)
+    {
+        'Registro deletado com sucesso.'
+    }
+
+## Update User [PUT /:id]
++ Parameter
+    + id: string - Id of user
+
++ Response 200 (application/json)
+    {
+        'Registro atualizado com sucesso.'
+    }
+    

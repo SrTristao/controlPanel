@@ -1,0 +1,109 @@
+FORMAT: 1A
+
+# ControlPanel - Item
+
+This section is a API allowing users to view items and create,delete and update them.
+
+## Items API Root [/admin/item]
+
++ Headers 
+    All routes has Authorization token in request.
+
+## List All Items [GET /filter/:filter] 
++ Parameter
+    + filter: {
+        name: string - Name of item
+        status: string - Status of item
+    }
++ Response 200 (application/json)
+    [
+        {
+            _id: string - Id of item
+            name: string - Name of item
+            status: string - Status of item
+            user: {
+                name: string - Name of user
+                _id: string - Id of user
+            }
+        }
+    ]
+
+## Count Items [GET /totItems]
+
++ Response 200 (application/json)
+    {
+        count: number - Total of item
+    }
+
+## Last Inserts [GET]
+
+return limit 5
+
++ Response 200 (application/json)
+    [
+        {
+            _id: string - Id of item
+            name: string - Name of item
+            status: string - Status of item
+            createdAt: timestamp - Date of creation of item 
+            user: {
+                name: string - Name of user
+                _id: string - Id of user
+            }
+        }
+    ]
+
+## Find item by id [GET /:id]
++ Parameter
+    + id: string - Id of item
+
++ Response 200 (application/json)
+    {
+        _id: string - Id of item
+        name: string - Name of item
+        status: string - Status of item
+        user: {
+            name: string - Name of user
+            _id: string - Id of user
+        }
+    }
+
+## Save Item [POST]
++ Request (application/json)
+    {
+        name: string - Name of item
+        status: string - Status of item        
+        user: {
+            name: string - Name of user
+            _id: string - Id of user
+        }
+    }
++ Response 200 (application/json)
+    {
+        _id: string - Id of item
+        name: string - Name of item
+        status: string - Status of item
+        user: {
+            name: string - Name of user
+            _id: string - Id of user
+        }
+    }
+
+## Delete Item [Delete /:id]
++ Parameter
+    + id: string - Id of item
+
++ Response 200 (application/json)
+    {
+        'Registro deletado com sucesso.'
+    }
+
+## Update Item [PUT /:id]
++ Parameter
+    + id: string - Id of item
+
++ Response 200 (application/json)
+    {
+        'Registro atualizado com sucesso.'
+    }
+    
