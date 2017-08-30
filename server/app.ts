@@ -7,7 +7,7 @@ import mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const app = express();
 
-mongoose.connect('mongodb://admin:admin123@ds149353.mlab.com:49353/controlpanel', {
+mongoose.connect(`mongodb://${config.DBUSER}:${config.DBPASSWORD}${config.DBHOST}`, {
     useMongoClient: true
 });
 

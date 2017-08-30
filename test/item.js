@@ -1,27 +1,26 @@
-const User = require('../dist_server/models/User');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../dist_server/app');
 const should = chai.should();
-const url = '/api/admin/user/';
+const url = '/api/admin/item/';
 
 chai.use(chaiHttp);
 let token = '';
-let userUpdate = {id: '', email: ''};
-describe("User", () => {
+let itemUpdate = {id: ''}
+describe("Item", () => {
     
     beforeEach(done => {
         chai.request(server)
         .post('/api/admin/auth/')
-        .send({"email": "corohsnk@hotmail.com", "password": "123admin"})        
+        .send({"email": "test@hotmail.com", "password": "123123"})        
         .end((err, res) => {
             token = res.body.token;            
             done();
         })
     })
 
-    describe("GET All Users /filter/:filter", () => {
-        it('Return users with or without filters', done => {
+    describe("GET All Items /filter/:filter", () => {
+        it('Return items with or without filters', done => {
             chai.request(server)
             .get(url.concat('filter/{}'))
             .set('Authorization', 'Bearer ' + token)
@@ -44,9 +43,9 @@ describe("User", () => {
     });
 
     describe("GET findById /:id", () => {
-        it('Return user', done => {
+        it('Return item', done => {
             chai.request(server)
-            .get(url.concat('5998af774e57cb4774469985'))
+            .get(url.concat('59a6c8e31319713820edeeee'))
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -66,9 +65,9 @@ describe("User", () => {
             })
         })
 
-        it('Return error when user not found', done => {
+        it('Return error when item not found', done => {
             chai.request(server)
-            .get(url.concat('57a63d6413189045d8ea44f4'))
+            .get(url.concat('51a3055b01a6e62c2015b603'))
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(401);
@@ -78,10 +77,10 @@ describe("User", () => {
         })
     });
 
-    describe("GET totUsers /totUsers", () => {
-        it('Return total users in db', done => {
+    describe("GET totItems /totItems", () => {
+        it('Return total items in db', done => {
             chai.request(server)
-            .get(url.concat('totUsers'))
+            .get(url.concat('totItems'))
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -105,103 +104,64 @@ describe("User", () => {
         })
     });
 
-    describe("POST Save User /", () => {
-        it('Save new user and return them.', done => {
+    describe("POST Save Item /", () => {
+        it('Save new item and return them.', done => {
             chai.request(server)
-            .post(url)
+            .post(url)            
             .set('Authorization', 'Bearer ' + token)
-            .send({"name":"TestMocha", "role":"user", "password":"123321", "email":`mocha${Math.random()}@hotmail.com`})
+            .send({"name":"Test Mocha", "status":"Concluido", "user":{"name": "João Alexandre Tristão de Almeida", "_id":"5998af774e57cb4774469985"}})
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
-                res.body.should.be.property('user');
+                res.body.should.be.property('item');
                 res.body.should.be.property('message');
-                userUpdate.id = res.body.user._id;                       
-                userUpdate.email = res.body.user.email;                
+                itemUpdate.id = res.body.item._id;                                                  
                 done();
             })
         })
 
-        it('Return error when pass object user incorrect (missing a field required, email invalid, password less 6 character, role different user or admin)', done => {
+        it('Return error when pass object item incorrect (missing a field required, status different Concluido ou Pendente)', done => {
             chai.request(server)
             .post(url)
             .set('Authorization', 'Bearer ' + token)
-            .send({"name":"TestMocha", "role":"user", "email":`mocha${Math.random()}@hotmail.com`})
+            .send({"name":"Test Mocha", "user":{"name": "João Alexandre Tristão de Almeida", "_id":"5998af774e57cb4774469985"}})
             .end((err, res) => {
                 res.should.have.status(401);  
-                res.body.should.be.property('message').eql('Usuário inválido.');                           
+                res.body.should.be.property('message').eql('Item inválido.');                           
                 done();
             })
         })        
     });
 
-    describe("POST Change password /changePassword", () => {
-        it('Change password and set new token on head and return message', done => {
+    describe("PUT Update Item /", () => {
+        it('Update item and return success message.', done => {
             chai.request(server)
-            .post(url.concat('/changePassword'))
+            .put(`${url}/${itemUpdate.id}`)
             .set('Authorization', 'Bearer ' + token)
-            .send({"email":`${userUpdate.email}`, "password": "123321", "newPassword": "111222333"})
-            .end((err, res) => {
-                res.should.have.status(200);                             
-                res.body.should.have.property('message').eql('Senha trocada com sucesso!');                   
-                done();
-            })
-        })
-
-        it('Return error when pass password incorrect', done => {
-            chai.request(server)
-            .post(url.concat('/changePassword'))
-            .set('Authorization', 'Bearer ' + token)
-            .send({"email":`${userUpdate.email}`, "password": "321312312", "newPassword": "123123"})
-            .end((err, res) => {
-                res.should.have.status(400);                             
-                res.body.should.have.property('message').eql('Senha inválida.');                   
-                done();
-            })
-        })
-
-        it('Return error when missing a filed required (email, password and newPassword)', done => {
-            chai.request(server)
-            .post(url.concat('/changePassword'))
-            .set('Authorization', 'Bearer ' + token)
-            .send({"email":`${userUpdate.email}`,  "newPassword": "123123"})
-            .end((err, res) => {
-                res.should.have.status(401);                             
-                res.body.should.have.property('message').eql('Usuário inválido.');                   
-                done();
-            })
-        })
-    });
-
-    describe("PUT Update User /", () => {
-        it('Update user and return success message.', done => {
-            chai.request(server)
-            .put(`${url}/${userUpdate.id}`)
-            .set('Authorization', 'Bearer ' + token)
-            .send({"name":"TestMocha", "role":"user", "password":"123321", "email":`${userUpdate.email}`, "_id": `${userUpdate.id}`})
+            .send({"name":"Test Mocha", "status":"Pendente", "user":{"name": "João Alexandre Tristão de Almeida", "_id":"5998af774e57cb4774469985"}, "_id": `${itemUpdate.id}`})
             .end((err, res) => {
                 res.should.have.status(200);                             
                 res.body.should.have.property('message').eql('Registro atualizado com sucesso.');                   
                 done();
             })
         })
-        it('Return error when pass object user incorrect (missing a field required, email invalid, password less 6 character, role different user or admin)', done => {
+        it('Return error when pass object item incorrect (missing a field required, status different Concluido ou Pendente)', done => {
             chai.request(server)
-            .put(`${url}/${userUpdate.id}`)
+            .put(`${url}/${itemUpdate.id}`)
             .set('Authorization', 'Bearer ' + token)
-            .send({"name":"TestMocha", "role":"user", "password":"123", "email":`${userUpdate.email}`, "_id": `${userUpdate.id}`})
+            .send({"name":"Test Mocha", "user":{"name": "João Alexandre Tristão de Almeida", "_id":"5998af774e57cb4774469985"}})
             .end((err, res) => {
                 res.should.have.status(401);  
-                res.body.should.be.property('message').eql('Usuário inválido.');                           
+                res.body.should.be.property('message').eql('Item inválido.');                           
                 done();
             })
         })
     });
 
-    describe("DELETE Delete User /:id", () => {
-        it('Delete user and return success message.', done => {
+    describe("DELETE Delete item /:id", () => {
+        it('Delete item and return success message.', done => {
             chai.request(server)
-            .delete(`${url}/${userUpdate.id}`)
+            .delete(`${url}/${itemUpdate.id}`)
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);                             

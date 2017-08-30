@@ -9,7 +9,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
         if(result)            
             res.status(200).send(result);
         else
-            res.status(401).send(CONST.MSG.ERR.FINDBYID);
+            res.status(401).send({message:CONST.MSG.ERR.FINDBYID});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -30,7 +30,7 @@ export async function saveItem(req: Request, res: Response, next: NextFunction):
         if(result)            
             res.status(200).send({message: CONST.MSG.SUCCESS.SAVE, item: result});
         else
-            res.status(401).send(CONST.MSG.ERR.SAVE);
+            res.status(401).send({message:CONST.MSG.ERR.SAVE});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -40,9 +40,9 @@ export async function deleteItem(req: Request, res: Response, next: NextFunction
     try {
         const result = await itemService.deleteItem(req.params.id); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.DELETE);
+            res.status(200).send({message:CONST.MSG.SUCCESS.DELETE});
         else
-            res.status(401).send(CONST.MSG.ERR.DELETE);
+            res.status(401).send({message:CONST.MSG.ERR.DELETE});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -52,9 +52,9 @@ export async function updateItem(req: Request, res: Response, next: NextFunction
     try {
         const result = await itemService.updateItem(req.body); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.UPDATE);
+            res.status(200).send({message: CONST.MSG.SUCCESS.UPDATE});
         else
-            res.status(401).send(CONST.MSG.ERR.UPDATE);
+            res.status(401).send({message: CONST.MSG.ERR.UPDATE});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -81,13 +81,13 @@ export async function totItems(req: Request, res:Response, next: NextFunction): 
 function errorHandler(err: Error, res: Response, next: NextFunction): any {
     switch (err.message) {      
       case 'object-invalid':
-        return res.status(401).send({message: 'Item inválido'})
+        return res.status(401).send({message: 'Item inválido.'})
       case 'invalid-object-id':
-        return res.status(401).send({ message: 'Parametro inválido'});
+        return res.status(401).send({ message: 'Parametro inválido.'});
       case 'parameter-not-expected':
         return res.status(401).send({ message: 'Parametro não experado.'})
       case 'item-not-found':
-        return res.status(404).send({ message: 'Item não encontrado' });
+        return res.status(404).send({ message: 'Item não encontrado.' });
       default:
         next(err);
     }

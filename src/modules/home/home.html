@@ -1,23 +1,23 @@
 <div class="home-container">  
     <label class="title">Home</label>
     <div class="statistics-home">
-        <div class="statistics-item">
+        <div class="statistics-item" ng-if="vm.userLogged.role === 'admin'">
             <span class="title"><i class="fa fa-user-sm"></i> Total usuários</span> <br/>
-            <span class="middle"> {{vm.countItem}} </span>
+            <span class="middle"> {{vm.countUser}} </span>
         </div>
         <div class="statistics-item">
             <span class="title"><i class="fa fa-item-sm"></i> Total Items</span> <br/>
-            <span class="middle"> {{vm.countUser}} </span>            
+            <span class="middle"> {{vm.countItem}} </span>            
         </div>
     </div> 
-    <div class="last-inserts">
-        <label> Ultimos usuários </label>
+    <div class="last-inserts" ng-if="vm.userLogged.role === 'admin'">
+        <label> Ultimos usuários cadastrados </label>
         <div ng-repeat="user in vm.listUsers">
             {{user.name}}
         </div>        
     </div>  
     <div class="last-inserts">
-        <label> Ultimos items </label>
+        <label> Ultimos items cadastrados</label>
         <div ng-repeat="item in vm.listItems">
             {{item.name}}
         </div>

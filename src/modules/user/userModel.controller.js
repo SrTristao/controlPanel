@@ -50,7 +50,7 @@
                     $state.go('server-undefined');
                     return;
                 }
-                $scope.closeThisDialog({message: data, user:vm.user});
+                $scope.closeThisDialog({message: data.message, user:vm.user});
             });
         
         }       

@@ -85,7 +85,7 @@
                             $state.go('server-undefined');
                             return;
                         }
-                        DialogFactory.openDialog(data);
+                        DialogFactory.openDialog(data.message);
                         let count = 0;
                         vm.listUsers.find(userDeleted => { count++; return userDeleted._id === user._id});
                         vm.listUsers.splice(count-1, 1);

@@ -5,13 +5,13 @@
     angular.module('controlpanel.home')    
     .controller('homeController', homeController);
 
-    homeController.$inject = ['DataFactory', 'CoreItemService', 'CoreUserService'];
+    homeController.$inject = ['DataFactory', 'CoreItemService', 'CoreUserService', 'CoreAuthService'];
 
-    function homeController(DataFactory, CoreItemService, CoreUserService) {
+    function homeController(DataFactory, CoreItemService, CoreUserService, CoreAuthService) {
         //vars
         let vm = this;   
-        vm.data = DataFactory;
-        vm.statistics = [{description: 'Total de usuários', value: 2500}, {description: 'Total de items', value: 2500}]
+        vm.data = DataFactory; 
+        vm.userLogged = CoreAuthService.getTokenData();      
         const init = () => {
             vm.data.menuItemActive = 'home';
             CoreItemService.lastInserts().then(data => {
