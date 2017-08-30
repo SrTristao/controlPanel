@@ -37,7 +37,7 @@ I created other project to centralize services.
 
 Why? Thinking scalar form this project can use mobile (ionic) or desktop (electron) and use the same core.
 
-[Core Project](https://github.com/corohsnk/controlpanel-core)
+> - [Core Project](https://github.com/corohsnk/controlpanel-core)
 
 ### Test
 
