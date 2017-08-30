@@ -37,7 +37,7 @@ export async function changePassword(user: any): Promise<any> {
 }
 
 export async function lastInserts(): Promise<any> {
-    return await User.find().sort('-createdAt').limit(5);
+    return await User.find({}, 'name').sort('-createdAt').limit(5);
 }
 
 export async function selectCount(): Promise<any> {

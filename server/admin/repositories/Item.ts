@@ -24,8 +24,8 @@ export async function updateItem(item: IItem) : Promise<any> {
      });
 }
 
-export async function lastInserts(): Promise<any> {
-    return await Item.find().sort('-createdAt').limit(5);
+export async function lastInserts(): Promise<any> {    
+    return await Item.find({}, 'name').sort('-createdAt').limit(5);
 }
 
 export async function selectCount(): Promise<any> {
