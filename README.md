@@ -25,6 +25,15 @@ The front was developmented with es6 , keep cool, the gulp has been configured w
 The gulp has been configured with browserify.
  > - gulp dev
 
+Use this credentials for a test.
+
+>- Admin
+	- email: controlpanel@controlpanel.com.br
+	- password: 123456
+>- User
+	- email: controlpanel-user@controlpanel.com.br
+	- password: 123456
+
 ### API Docs
 
 This API created with restFull and you need to provide authentication details which will be used through API calls.
