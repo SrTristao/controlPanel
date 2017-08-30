@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import { cors } from './middlewares/cors';
 import mongoose = require('mongoose');
+import * as morgan from 'morgan';
 mongoose.Promise = require('bluebird');
 const app = express();
 
@@ -12,6 +13,11 @@ mongoose.connect(`mongodb://${config.DBUSER}:${config.DBPASSWORD}${config.DBHOST
 });
 
 app.use(cors);
+
+if (config.ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));

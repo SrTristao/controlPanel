@@ -73,7 +73,7 @@
         }
 
         vm.deleteItem = (item) => {            
-            DialogFactory.openDialogConfirm('Deseja deletar ' + item.name + ' ?').then(data => {
+            DialogFactory.openDialogConfirm(`Deseja deletar ${item.name} ?`).then(data => {
                 if (data) {
                     CoreItemService.deleteItem(item._id).then((data) => {
                         if(data === 'server undefined') {                 

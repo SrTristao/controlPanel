@@ -78,7 +78,7 @@
                 DialogFactory.openDialog('O usuário logado não pode deletar ele mesmo.');
                 return;
             }
-            DialogFactory.openDialogConfirm('Deseja deletar ' + user.name + ' ?').then(data => {
+            DialogFactory.openDialogConfirm(`Deseja deletar ${user.name} ?`).then(data => {
                 if (data) {
                     CoreUserService.deleteUser(user._id).then((data) => {
                         if(data === 'server undefined') {                 

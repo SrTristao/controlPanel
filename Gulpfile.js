@@ -3,7 +3,9 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),    
     concat = require('gulp-concat'),    
-    minify = require('gulp-js-minify'),    
+    minify = require('gulp-js-minify'),  
+    uglify = require('gulp-uglify'),
+    ngAnnotate = require('gulp-ng-annotate'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync').create(),
     babel = require('gulp-babel'),
@@ -42,6 +44,8 @@ gulp.task('devJS', function () {
         .pipe(babel({
             presets: ['env']
         }))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
         .pipe(concat('main.min.js'))        
         .pipe(gulp.dest('./src/assets/js/'))
         .pipe(browserSync.stream());
