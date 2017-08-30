@@ -2,8 +2,7 @@
 
     'use strict';
 
-    angular.module('controlpanel', [ 
-        'ngRoute',  
+    angular.module('controlpanel', [         
         'ui.router',  
         'ui.router.state.events',                            
         'ngDialog',
