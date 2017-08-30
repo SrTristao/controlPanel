@@ -1,9 +1,12 @@
 
 
 
+
+
+
 ## Control Panel
 
-This project has been created with NodeJS + TypeScript + MongoDB + AngularJS.
+This project has been created with NodeJS + TypeScript + MongoDB + AngularJS + Mocha + Chai.
 
 TypeScript? Why not? =).
 
@@ -53,4 +56,3 @@ Why? Thinking scalar form this project can use mobile (ionic) or desktop (electr
 To run the library tests, use npm test.
 
 > - npm test
-
