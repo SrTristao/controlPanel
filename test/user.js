@@ -1,4 +1,3 @@
-const User = require('../dist_server/models/User');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../dist_server/app');
@@ -13,7 +12,7 @@ describe("User", () => {
     beforeEach(done => {
         chai.request(server)
         .post('/api/admin/auth/')
-        .send({"email": "corohsnk@hotmail.com", "password": "123admin"})        
+        .send({"email": "controlpanel@controlpanel.com.br", "password": "123456"})        
         .end((err, res) => {
             token = res.body.token;            
             done();
@@ -46,7 +45,7 @@ describe("User", () => {
     describe("GET findById /:id", () => {
         it('Return user', done => {
             chai.request(server)
-            .get(url.concat('5998af774e57cb4774469985'))
+            .get(url.concat('59a6c8e31319713820edeeee'))
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -98,8 +97,7 @@ describe("User", () => {
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.should.be.a('array');  
-                res.body.length.should.be.eql(5);        
+                res.body.should.be.a('array');                    
                 done();
             })
         })
@@ -143,7 +141,7 @@ describe("User", () => {
             .send({"email":`${userUpdate.email}`, "password": "123321", "newPassword": "111222333"})
             .end((err, res) => {
                 res.should.have.status(200);                             
-                res.body.should.have.property('message').eql('Senha trocada com sucesso!');                   
+                res.body.should.have.property('message').eql('Senha alterada com sucesso!');                   
                 done();
             })
         })

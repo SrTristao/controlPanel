@@ -70,7 +70,7 @@ return limit 5
 
 ## Save Item [POST]
 + Request (application/json)
-    {
+    { 
         name: string - Name of item
         status: string - Status of item        
         user: {
@@ -80,12 +80,15 @@ return limit 5
     }
 + Response 200 (application/json)
     {
-        _id: string - Id of item
-        name: string - Name of item
-        status: string - Status of item
+        message: 'Registro salvo com sucesso.',
         user: {
-            name: string - Name of user
-            _id: string - Id of user
+            _id: string - Id of item
+            name: string - Name of item
+            status: string - Status of item
+            user: {
+                name: string - Name of user
+                _id: string - Id of user
+            }
         }
     }
 
@@ -95,7 +98,7 @@ return limit 5
 
 + Response 200 (application/json)
     {
-        'Registro deletado com sucesso.'
+        message: 'Registro deletado com sucesso.'
     }
 
 ## Update Item [PUT /:id]
@@ -104,6 +107,6 @@ return limit 5
 
 + Response 200 (application/json)
     {
-        'Registro atualizado com sucesso.'
+        message: 'Registro atualizado com sucesso.'
     }
     

@@ -27,7 +27,7 @@
                         $state.go('server-undefined');
                         return;
                     }
-                    if(data.message) {
+                    if(data.message !== 'Senha alterada com sucesso!') {
                         DialogFactory.openDialog(data.message);
                         return;
                     }

@@ -65,7 +65,7 @@ export async function changePassword(req: Request, res:Response, next: NextFunct
         const result = await userService.changePassword(req.body);
         if(result) {
             res.setHeader('X-Token', result);
-            res.status(200).send({message:'Senha trocada com sucesso!'});
+            res.status(200).send({message:'Senha alterada com sucesso!'});
         }
         else
             res.status(401).send({message: CONST.MSG.ERR.UPDATE});

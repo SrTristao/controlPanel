@@ -2,10 +2,10 @@ import * as UserRepository from '../repositories/User';
 import { IUser } from '../../interfaces/IUser';
 import * as Utils from '../../utils/utils';
 import * as bcrypt from '../../services/bcrypt';
-import { login } from './auth';
 import { ServiceError } from '../../errors/service';
 import * as mongoose from 'mongoose';
 import { validate } from '../validators/user';
+import * as token from '../middlewares/auth-service';
 
 export async function list(filter: any) { 
     try {
@@ -71,6 +71,8 @@ export async function changePassword(data: any) {
     await bcrypt.compare(user.password, data.password);
 
     await UserRepository.changePassword(data);
-
-    return await login(data.email, data.newPassword);
+    
+    user.password = await bcrypt.hash(data.newPassword);
+    
+    return await token.generateToken(user);
 }

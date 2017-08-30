@@ -31,7 +31,7 @@
                 
                 changePassword.closePromise.then(data => {
                     if(!data.value) return;                                                        
-                    DialogFactory.openDialog(data.value);                    
+                    DialogFactory.openDialog(data.value.message);                    
                 })
             }
 

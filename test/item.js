@@ -12,7 +12,7 @@ describe("Item", () => {
     beforeEach(done => {
         chai.request(server)
         .post('/api/admin/auth/')
-        .send({"email": "test@hotmail.com", "password": "123123"})        
+        .send({"email": "controlpanel@controlpanel.com.br", "password": "123456"})        
         .end((err, res) => {
             token = res.body.token;            
             done();
@@ -45,7 +45,7 @@ describe("Item", () => {
     describe("GET findById /:id", () => {
         it('Return item', done => {
             chai.request(server)
-            .get(url.concat('59a6c8e31319713820edeeee'))
+            .get(url.concat('59a6fa439b79a93618ab746d'))
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -97,8 +97,7 @@ describe("Item", () => {
             .set('Authorization', 'Bearer ' + token)
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.should.be.a('array');  
-                res.body.length.should.be.eql(5);        
+                res.body.should.be.a('array');                   
                 done();
             })
         })

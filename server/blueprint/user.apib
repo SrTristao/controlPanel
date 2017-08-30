@@ -74,12 +74,12 @@ return limit 5
     }
 + Response 200 (application/json)
     {
-        'Email já cadastrado'
+        message: 'Email já cadastrado'
     }
 + Response 200 (application/json)
     {        
         message: 'Registro salvo com sucesso.'
-        {
+        user: {
             _id: string - Id of user
             createdAt: timestamp - Date of creation of user
             name: string - Name of user
@@ -100,7 +100,7 @@ return limit 5
     + Header 
         + token
     {
-        'Senha trocada com sucesso!'.
+        message: 'Senha alterada com sucesso!'.
     }
 
 
@@ -110,7 +110,7 @@ return limit 5
 
 + Response 200 (application/json)
     {
-        'Registro deletado com sucesso.'
+       message: 'Registro deletado com sucesso.'
     }
 
 ## Update User [PUT /:id]
@@ -119,6 +119,6 @@ return limit 5
 
 + Response 200 (application/json)
     {
-        'Registro atualizado com sucesso.'
+        message: 'Registro atualizado com sucesso.'
     }
     

@@ -396,6 +396,54 @@ label.title {
     .home-container .last-inserts div {
       margin-top: 5px; }
 
+.item-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto; }
+  .item-container .input-group {
+    margin-left: 10px; }
+  .item-container .search-table, .item-container .search-container, .item-container .search-buttons {
+    margin-left: 40px; }
+  .item-container .search-container {
+    width: 84%;
+    margin-top: 50px; }
+  .item-container .search-table {
+    width: 84%;
+    margin-bottom: 35px; }
+  .item-container .search-buttons {
+    width: 84%; }
+  @media screen and (max-width: 767px) {
+    .item-container .search-container, .item-container .search-table, .item-container .search-buttons {
+      margin-left: 20px; } }
+
+.itemModal-container {
+  background-color: #F7F7F7;
+  width: auto;
+  height: 290px; }
+  .itemModal-container .ng-touched.ng-invalid {
+    border-color: red; }
+  .itemModal-container .input-group {
+    width: 100%; }
+  .itemModal-container label.title {
+    margin-left: 0px;
+    font-size: 20px; }
+  .itemModal-container form {
+    margin-top: 50px; }
+  .itemModal-container .buttons {
+    float: left; }
+    .itemModal-container .buttons #salvar {
+      margin-left: 10px; }
+  .itemModal-container .ng-touched.ng-invalid {
+    border-color: red; }
+
 .login-container {
   width: 100%;
   height: 100%;
@@ -503,54 +551,6 @@ label.title {
     float: left; }
     .changePassword-container .buttons #salvar {
       margin-left: 10px; }
-
-.item-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  flex: 1 1 auto;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: auto; }
-  .item-container .input-group {
-    margin-left: 10px; }
-  .item-container .search-table, .item-container .search-container, .item-container .search-buttons {
-    margin-left: 40px; }
-  .item-container .search-container {
-    width: 84%;
-    margin-top: 50px; }
-  .item-container .search-table {
-    width: 84%;
-    margin-bottom: 35px; }
-  .item-container .search-buttons {
-    width: 84%; }
-  @media screen and (max-width: 767px) {
-    .item-container .search-container, .item-container .search-table, .item-container .search-buttons {
-      margin-left: 20px; } }
-
-.itemModal-container {
-  background-color: #F7F7F7;
-  width: auto;
-  height: 290px; }
-  .itemModal-container .ng-touched.ng-invalid {
-    border-color: red; }
-  .itemModal-container .input-group {
-    width: 100%; }
-  .itemModal-container label.title {
-    margin-left: 0px;
-    font-size: 20px; }
-  .itemModal-container form {
-    margin-top: 50px; }
-  .itemModal-container .buttons {
-    float: left; }
-    .itemModal-container .buttons #salvar {
-      margin-left: 10px; }
-  .itemModal-container .ng-touched.ng-invalid {
-    border-color: red; }
 
 .user-container {
   width: 100%;
