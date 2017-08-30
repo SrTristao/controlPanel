@@ -42,9 +42,7 @@ export async function saveUser(user: IUser) {
 
     const alreadyExists = await UserRepository.findByEmail(user.email);
 
-    if (alreadyExists) {
-        return 'Email já cadastrado.'
-    }
+    if (alreadyExists) throw new ServiceError('user-already-created');
     
     return await UserRepository.saveUser(user);
 }
@@ -66,7 +64,7 @@ export async function updateUser(user: IUser) {
 }
 
 export async function changePassword(data: any) {
-    if (!data.email || !data.password || data.newPassword) throw new ServiceError('object-invalid');
+    if (!data.email || !data.password || !data.newPassword) throw new ServiceError('object-invalid');
     
     const user = await findByEmail(data.email);
 

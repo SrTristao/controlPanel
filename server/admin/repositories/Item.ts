@@ -18,12 +18,10 @@ export async function deleteItem(id: string) : Promise<any> {
     return await Item.findByIdAndRemove(id);
 }
 
-export async function updateItem(item: IItem) : Promise<any> {    
-   return await Item.findOne({_id:item._id}, (err, doc) => {
-        doc.name = item.name;        
-        doc.status = item.status;
-        doc.save();
-    })
+export async function updateItem(item: IItem) : Promise<any> { 
+    return await Item.findOne({_id:item._id}, async (err, doc) => {        
+        return await Object.assign(doc, item).save();
+     });
 }
 
 export async function lastInserts(): Promise<any> {

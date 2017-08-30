@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./dist_server/app.js",
-    "compile": "tsc -w"
+    "compile": "tsc -w",
+    "test": "mocha --timeout 10000"
   },
   "author": "Tristao",
   "license": "ISC",
@@ -44,10 +45,12 @@
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.3",
+    "g": "^2.0.1",
     "joi": "^10.6.0",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
     "md5": "^2.2.1",
+    "mocha": "^3.5.0",
     "moment": "^2.18.1",
     "mongoose": "^4.11.7",
     "morgan": "^1.8.2",

@@ -9,7 +9,7 @@ export async function findById(req: Request, res: Response, next: NextFunction) 
         if(result)            
             res.status(200).send(result);
         else
-            res.status(401).send(CONST.MSG.ERR.FINDBYID);
+            res.status(401).send({message: CONST.MSG.ERR.FINDBYID});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -27,12 +27,10 @@ export async function list(req: Request, res: Response, next: NextFunction): Pro
 export async function saveUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {                    
         const result = await userService.saveUser(req.body); 
-        if(typeof result === 'string')            
-            res.status(200).send(result);
-        else if (result)
+      if (result)
             res.status(200).send({message: CONST.MSG.SUCCESS.SAVE, user: result});
         else
-            res.status(401).send(CONST.MSG.ERR.SAVE);
+            res.status(401).send({message: CONST.MSG.ERR.SAVE});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -42,9 +40,9 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
     try {
         const result = await userService.deleteUser(req.params.id); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.DELETE);
+            res.status(200).send({message: CONST.MSG.SUCCESS.DELETE});
         else
-            res.status(401).send(CONST.MSG.ERR.DELETE);
+            res.status(401).send({message: CONST.MSG.ERR.DELETE});
     } catch (err) {
         next(err);
     }
@@ -54,11 +52,11 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
     try {
         const result = await userService.updateUser(req.body); 
         if(result)            
-            res.status(200).send(CONST.MSG.SUCCESS.UPDATE);
+            res.status(200).send({message: CONST.MSG.SUCCESS.UPDATE});
         else
-            res.status(401).send(CONST.MSG.ERR.UPDATE);
+            res.status(401).send({message: CONST.MSG.ERR.UPDATE});
     } catch (err) {
-        next(err);
+        errorHandler(err, res, next);
     }
 }
 
@@ -67,10 +65,10 @@ export async function changePassword(req: Request, res:Response, next: NextFunct
         const result = await userService.changePassword(req.body);
         if(result) {
             res.setHeader('X-Token', result);
-            res.status(200).send('Senha trocada com sucesso!');
+            res.status(200).send({message:'Senha trocada com sucesso!'});
         }
         else
-            res.status(401).send(CONST.MSG.ERR.UPDATE);
+            res.status(401).send({message: CONST.MSG.ERR.UPDATE});
     } catch (err) {
         errorHandler(err, res, next);
     }
@@ -95,19 +93,21 @@ export async function totUsers(req: Request, res:Response, next: NextFunction): 
 }
 
 function errorHandler(err: Error, res: Response, next: NextFunction): any {
-    switch (err.message) {      
+    switch (err.message) {    
+     case 'user-already-created'  :
+        return res.status(401).send({message: 'Usuário já registrado.'})
       case 'object-invalid':
-        return res.status(401).send({message: 'Usuário inválido'})
+        return res.status(401).send({message: 'Usuário inválido.'})
       case 'invalid-object-id':
-        return res.status(401).send({ message: 'Parametro inválido'});
+        return res.status(401).send({ message: 'Parametro inválido.'});
       case 'parameter-not-expected':
         return res.status(401).send({ message: 'Parametro não experado.'})
       case 'user-not-found':
-        return res.status(404).send({ message: 'Usuário não encontrado' });
+        return res.status(404).send({ message: 'Usuário não encontrado.' });
       case 'user-inactive':
-        return res.status(403).send({ message: 'Usuário inativo' });
+        return res.status(403).send({ message: 'Usuário inativo.' });
       case 'invalid-password':
-        return res.status(400).send({ message: 'Senha inválida' });
+        return res.status(400).send({ message: 'Senha inválida.' });
       default:
         next(err);
     }

@@ -23,12 +23,9 @@ export async function deleteUser(id: string) : Promise<any> {
     return await User.findByIdAndRemove(id);
 }
 
-export async function updateUser(user: IUser) : Promise<any> {    
+export async function updateUser(user: IUser) : Promise<any> {   
    return await User.findOne({_id:user._id}, async (err, doc) => {        
-        doc.name = user.name;
-        doc.email = user.email;                        
-        doc.role = user.role;
-        doc.save();
+       return await Object.assign(doc, user).save();
     })
 }
 

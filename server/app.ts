@@ -20,3 +20,4 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use('/api', apiRoutes);
 
 app.listen(config.PORT, () => console.log(`server started: PORT: ${config.PORT} | ENV: ${config.ENV}`));
+module.exports = app;
