@@ -1,7 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const routes_1 = require("./routes/status/routes");
-exports.router = express.Router();
-exports.router.use('/status', routes_1.router);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc2VydmVyL3B1YmxpYy9yb3V0ZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FBbUM7QUFDbkMsbURBQWdFO0FBQ25ELFFBQUEsTUFBTSxHQUFHLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQztBQUV2QyxjQUFNLENBQUMsR0FBRyxDQUFDLFNBQVMsRUFBRSxlQUFZLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIGV4cHJlc3MgZnJvbSAnZXhwcmVzcyc7XG5pbXBvcnQgeyByb3V0ZXIgYXMgc3RhdHVzUm91dGVzIH0gZnJvbSAnLi9yb3V0ZXMvc3RhdHVzL3JvdXRlcyc7XG5leHBvcnQgY29uc3Qgcm91dGVyID0gZXhwcmVzcy5Sb3V0ZXIoKTtcblxucm91dGVyLnVzZSgnL3N0YXR1cycsIHN0YXR1c1JvdXRlcyk7Il19

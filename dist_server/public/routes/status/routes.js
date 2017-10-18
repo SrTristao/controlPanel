@@ -1,7 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const actions_1 = require("./actions");
-exports.router = express.Router();
-exports.router.get('/', actions_1.statusServer);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc2VydmVyL3B1YmxpYy9yb3V0ZXMvc3RhdHVzL3JvdXRlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLG1DQUFtQztBQUVuQyx1Q0FBeUM7QUFFNUIsUUFBQSxNQUFNLEdBQUcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDO0FBRXZDLGNBQU0sQ0FBQyxHQUFHLENBQUMsR0FBRyxFQUFFLHNCQUFZLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIGV4cHJlc3MgZnJvbSAnZXhwcmVzcyc7XG5cbmltcG9ydCB7IHN0YXR1c1NlcnZlciB9IGZyb20gJy4vYWN0aW9ucyc7XG5cbmV4cG9ydCBjb25zdCByb3V0ZXIgPSBleHByZXNzLlJvdXRlcigpO1xuXG5yb3V0ZXIuZ2V0KCcvJywgc3RhdHVzU2VydmVyKTsiXX0=

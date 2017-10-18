@@ -1,9 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const routes_1 = require("./admin/routes");
-const routes_2 = require("./public/routes");
-exports.router = express_1.Router();
-exports.router.use('/public', routes_2.router);
-exports.router.use('/admin', routes_1.router);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vc2VydmVyL3JvdXRlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLHFDQUFnQztBQUVoQywyQ0FBdUQ7QUFDdkQsNENBQXlEO0FBQzVDLFFBQUEsTUFBTSxHQUFHLGdCQUFNLEVBQUUsQ0FBQztBQUUvQixjQUFNLENBQUMsR0FBRyxDQUFDLFNBQVMsRUFBRSxlQUFZLENBQUMsQ0FBQztBQUNwQyxjQUFNLENBQUMsR0FBRyxDQUFDLFFBQVEsRUFBRSxlQUFXLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlcn0gZnJvbSAnZXhwcmVzcyc7XG5cbmltcG9ydCB7IHJvdXRlciBhcyBhZG1pblJvdXRlcyB9IGZyb20gJy4vYWRtaW4vcm91dGVzJztcbmltcG9ydCB7IHJvdXRlciBhcyBwdWJsaWNSb3V0ZXMgfSBmcm9tICcuL3B1YmxpYy9yb3V0ZXMnO1xuZXhwb3J0IGNvbnN0IHJvdXRlciA9IFJvdXRlcigpO1xuXG5yb3V0ZXIudXNlKCcvcHVibGljJywgcHVibGljUm91dGVzKTtcbnJvdXRlci51c2UoJy9hZG1pbicsIGFkbWluUm91dGVzKTsiXX0=
