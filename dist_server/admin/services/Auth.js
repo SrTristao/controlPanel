@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const userRepository = require("../repositories/User");
+const bcrypt = require("../../services/bcrypt");
+const token = require("../middlewares/auth-service");
+const service_1 = require("../../errors/service");
+async function login(email, password) {
+    const user = await userRepository.findByEmail(email);
+    if (!user)
+        throw new service_1.ServiceError('user-not-found');
+    await bcrypt.compare(user.password, password);
+    return await token.generateToken(user);
+}
+exports.login = login;
+async function refreshToken() {
+}
+exports.refreshToken = refreshToken;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQXV0aC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9hZG1pbi9zZXJ2aWNlcy9BdXRoLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsdURBQXVEO0FBQ3ZELGdEQUFnRDtBQUNoRCxxREFBcUQ7QUFDckQsa0RBQW9EO0FBRTdDLEtBQUssZ0JBQWdCLEtBQWEsRUFBRSxRQUFnQjtJQUN2RCxNQUFNLElBQUksR0FBRyxNQUFNLGNBQWMsQ0FBQyxXQUFXLENBQUMsS0FBSyxDQUFDLENBQUM7SUFFckQsRUFBRSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUM7UUFBQyxNQUFNLElBQUksc0JBQVksQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO0lBRXBELE1BQU0sTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLFFBQVEsQ0FBQyxDQUFDO0lBRTlDLE1BQU0sQ0FBQyxNQUFNLEtBQUssQ0FBQyxhQUFhLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDM0MsQ0FBQztBQVJELHNCQVFDO0FBRU0sS0FBSztBQUVaLENBQUM7QUFGRCxvQ0FFQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIHVzZXJSZXBvc2l0b3J5IGZyb20gJy4uL3JlcG9zaXRvcmllcy9Vc2VyJztcbmltcG9ydCAqIGFzIGJjcnlwdCBmcm9tICcuLi8uLi9zZXJ2aWNlcy9iY3J5cHQnO1xuaW1wb3J0ICogYXMgdG9rZW4gZnJvbSAnLi4vbWlkZGxld2FyZXMvYXV0aC1zZXJ2aWNlJztcbmltcG9ydCB7IFNlcnZpY2VFcnJvciB9IGZyb20gJy4uLy4uL2Vycm9ycy9zZXJ2aWNlJztcblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGxvZ2luKGVtYWlsOiBzdHJpbmcsIHBhc3N3b3JkOiBzdHJpbmcpIHtcbiAgICBjb25zdCB1c2VyID0gYXdhaXQgdXNlclJlcG9zaXRvcnkuZmluZEJ5RW1haWwoZW1haWwpO1xuICAgIFxuICAgIGlmICghdXNlcikgdGhyb3cgbmV3IFNlcnZpY2VFcnJvcigndXNlci1ub3QtZm91bmQnKTtcbiAgICBcbiAgICBhd2FpdCBiY3J5cHQuY29tcGFyZSh1c2VyLnBhc3N3b3JkLCBwYXNzd29yZCk7XG5cbiAgICByZXR1cm4gYXdhaXQgdG9rZW4uZ2VuZXJhdGVUb2tlbih1c2VyKTtcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHJlZnJlc2hUb2tlbigpIHtcbiAgICBcbn0iXX0=

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response }  from 'express';
 import * as userService from '../../services/User';
-import * as userRepository from '../../repositories/user';
+import * as userRepository from '../../repositories/User';
 import { CONST } from '../../../utils/const';
 
 export async function findById(req: Request, res: Response, next: NextFunction) : Promise<void> {
